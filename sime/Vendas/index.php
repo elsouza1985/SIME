@@ -82,6 +82,7 @@ $('.fe-chevron-left').on('click',function(){
                       <div class="card-body text-center">
                         <div class="h5">Valor do dia</div>
                         <div class="display-4 font-weight-bold mb-4">R$652</div>
+			<h3>Meta</h3>
                         <h4>Junho: R$1.000,00</h4>
                         <div class="progress progress-sm">
                           <div class="progress-bar bg-green" style="width: 84%"></div>

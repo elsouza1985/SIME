@@ -1,0 +1,6 @@
+{"window.zoomLevel": 1,
+"php.executablePath": "/opt/lampp/lib/php/extensions/xdebug.so",
+"php.validate.enable": true,
+"php.validate.run": "onType"
+
+}

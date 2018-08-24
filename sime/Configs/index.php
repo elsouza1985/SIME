@@ -3,6 +3,7 @@
 <div class="page-header">
 	<h1 class="page-title">Configurações</h1>
 </div>
+<?php if(1==1):?>
 <div class="row row-cards">
 	<div class="col-6 col-sm-4 col-lg-2">
 		<a href="Vendas/index.php">

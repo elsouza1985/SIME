@@ -7,7 +7,7 @@ define('DB_NAME', 'SIME');
 define('DB_USER', 'root');
 
 /** Senha do banco de dados MySQL */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'sine903');
 
 /** nome do host do MySQL */
 define('DB_HOST', 'localhost');
@@ -18,7 +18,7 @@ if ( !defined('ABSPATH') )
 
 /** caminho no server para o sistema **/
 if ( !defined('BASEURL') )
-	define('BASEURL', '/SIME/');
+	define('BASEURL', '/sime/');
 
 /** caminho do arquivo de banco de dados **/
 if ( !defined('DBAPI') )
