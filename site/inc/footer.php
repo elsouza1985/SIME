@@ -4,7 +4,7 @@
 			<div class="row footer_content d-flex flex-sm-row flex-column align-items-center">
 				<div class="col-sm-6 cr text-sm-left text-center">
 					<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<?php echo(date('yyyy')) ?> All rights reserved | VALOR⁹
+Copyright &copy;20<?php echo(date('yy')) ?> All rights reserved | VALOR⁹
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 				</div>
 				<div class="col-sm-6 text-sm-right text-center">

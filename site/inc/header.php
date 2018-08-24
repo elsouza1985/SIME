@@ -35,7 +35,10 @@
 		<!-- Main Navigation -->
 		<nav class="main_nav justify-self-end">
 			<ul class="nav_items">
-				<li class="active"><a href="#"><span>home</span></a></li>
+				<li class="active"><a href="/site/"><span>home</span></a></li>
+				<li><a href="/site/about.php"><span>Quem somos</span></a></li>
+				<li><a href="#"><span>Produtos</span></a></li>
+				<li><a href="/site/contact.php"><span>Contato</span></a></li>
 				<!--<li><a href="services.html"><span>services</span></a></li>
 				<li><a href="elements.html"><span>elements</span></a></li>
 				<li><a href="blog.html"><span>blog</span></a></li>
@@ -59,8 +62,10 @@
 		<nav class="fs_menu_nav">
 			<ul class="fs_menu_list">
 				<li><a href="#"><span><span>H</span>Home</span></a></li>
-				<!--<li><a href="#"><span><span>S</span>Services</span></a></li>
-				<li><a href="#"><span><span>E</span>Elements</span></a></li>
+				<li><a href="#"><span><span>Q</span>Quem somos</span></a></li>
+				<li><a href="#"><span><span>P</span>Produtos</span></a></li>
+				<li><a href="/site/contact.php"><span><span>C</span>Contato</span></a></li>
+				<!--<li><a href="#"><span><span>E</span>Elements</span></a></li>
 				<li><a href="#"><span><span>B</span>Blog</span></a></li>
 				<li><a href="#"><span><span>C</span>Contact</span></a></li>-->
 			</ul>
