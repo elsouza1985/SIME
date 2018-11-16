@@ -1,0 +1,685 @@
+#img-porto{ 
+	width:300px;
+	height:250px;
+	background-image: url("../../slices/img-porto.png");
+	margin-top:20px;
+	float:left;
+	cursor:pointer;}
+
+
+#ImgLogo{
+     float:left;
+     display:inline;
+     margin:6px 0 0 -14px;
+}
+
+#servicosTopo{
+    float:left;
+    width:573px;
+    margin:56px 0 0 0;
+}
+
+#telefoneTopoImg {
+    background-image: url("../../slices/img-telefone.png");
+    background-repeat: no-repeat;
+    float: left;
+    height: 29px;
+    width: 42px;
+}
+
+#telefoneTopo {
+    background-image: url("../../slices/img-telefoneSeta.png");
+    background-position: right 4px;
+    background-repeat: no-repeat;
+    color: #1D2473;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    height: 37px;
+    margin: 4px 10px -11px 0;
+    position: relative;
+    width: 123px;
+}
+
+#telefonesTopo {
+    background-color: #FFFFFF;
+    border-top: 2px solid #66D0B7;
+    font-family: Arial,Helvetica,sans-serif;
+    left: -60px;
+    line-height: 41px;
+    min-width: 186px;
+    padding: 6px 0 7px 20px;
+    position: absolute;
+    top: 35px;
+    
+    display: none;
+}
+
+#btoLigamosVoce a{
+    float:left;
+    display:inline;
+    margin:-2px 0 0 23px;
+    width:136px;
+    height:33px;
+    background-image: url(../../slices/bto-ligamosVoce.png);
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+
+#btoLigamosVoce a:hover{
+    background-position:left bottom;
+}
+
+#AtendimentoOnline{
+    float:left;
+    display:inline;
+    margin:0 0 0 30px;
+}
+
+#AtendimentoOnline img{
+	border:0;
+}
+
+#bgMenuInstitucional{
+    float:left;
+    width:100%;
+    height:60px;
+}
+
+#MenuInstitucional{
+    float:left;
+    display:inline;
+    width:660px;
+    margin:5px 0 0 0;
+}
+
+.ItemMenuInstitucional{
+    float:left;
+    height:55px;
+    padding:0 20px;
+    border-right:solid 1px #72D2BC;
+    border-left:solid 1px #44B49A;
+}
+
+.ItemMenuInstitucional a{
+    float:left;
+    height:22px;
+    margin:15px 0 0 0;
+    padding:5px 3px;
+	text-decoration:none;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size:16px;
+    text-shadow:1px 1px 1px #217461;
+    color:#FFF;
+    font-weight:bold;
+}
+
+.ItemMenuInstitucional a:hover{
+    background-image: url(../../slices/bg-menuHover.jpg);
+    background-repeat:repeat-x;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#BannerFlash{
+    float:left;
+    margin:10px 0 0 -15px;
+    width:551px;
+    height:61px;
+}
+
+.TxtFlash{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	display:block;
+	height:100%;
+	border:1px dashed #000000;
+	text-align:center;
+}
+
+.TxtFlash a{
+	color:#000000;
+	text-decoration:none;
+}
+
+.TxtFlash a:hover{
+	text-decoration:underline;
+}
+
+
+#BuscaReferencia form{
+    float:right;
+    width:252px;
+    height:82px;
+	margin:-22px 24px 0 0;
+	padding:0;
+    background-image: url(../../slices/bg-buscaRef.jpg);
+    background-repeat:no-repeat;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+#BuscaReferencia fieldset{
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+#BuscaReferencia label{
+    float:left;
+    width:100%;
+    margin:13px 0 0 0;
+	cursor:pointer;
+    font-size:14px;
+    color:#FFF;
+    font-weight:bold;
+    text-shadow:1px 1px 1px #28947B;
+    text-align:center;
+    letter-spacing: -0.5px;
+}
+
+#BuscaReferencia #Codigo{
+    float:left;
+    display:inline;
+    margin:15px 0 0 40px;
+    width:140px;
+    font-size:12px;
+    color:#FFF;
+    border:none;
+    background:transparent;
+}
+
+#BuscaReferencia #BtoBuscaRef{
+    float:right;
+    display:inline;
+    width: 19px;
+    height: 19px;
+    margin:16px 40px 0 0;
+	border:0;
+	background:transparent;
+	cursor:pointer;
+	background-repeat:no-repeat;
+    background-image: url(../../slices/bto-buscaRef.png);
+    background-position: left top;
+}
+
+#BuscaReferencia #BtoBuscaRef:hover{
+    background-position:left bottom;
+}
+
+.loading{
+	background-image:url(../../imagens/loading.gif);
+	background-repeat:no-repeat;
+	background-position:center;
+	text-indent:-9999px;
+}
+
+#BuscaAvancada{
+    float:left;
+    width:916px;
+    height:70px;
+    margin:20px 0 0 0;
+    padding:10px 20px;
+    background-image: url(../../slices/bg-buscaAvancada.jpg);
+    background-repeat:repeat-x;
+    border-radius:7px;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+}
+
+.marginBuscaAvancada{
+    margin:27px 0 0 0!important;
+}
+
+.marginInternas{
+    margin:38px 0 0 0;
+}
+
+#BuscaAvancada #ImgBuscaAvancada{
+    float:left;
+    width:100%;
+    height:20px;
+    margin:4px 0 0 0;
+    background-image: url(../../slices/header-BuscaAvancada.png);
+    background-repeat: no-repeat;
+    text-indent:-9999px;
+}
+
+#BuscaAvancada #ConteudoCamposBusca{
+    float: left;
+    width:100%;
+}
+
+#BuscaAvancada form{
+	margin:0;
+	padding:0;
+}
+
+#BuscaAvancada fieldset{
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+#BuscaAvancada ol{
+	list-style:none;
+	margin:7px 0 0 10px;
+	padding:0;
+}
+
+#BuscaAvancada ol li{
+    float:left;
+    display:inline;
+    margin:0 7px 0 0;
+}
+
+#BuscaAvancada ol li .BoxBuscaAvancada{
+
+}
+
+#BuscaAvancada #bto{
+
+}
+
+#BuscaAvancada #bto #BtoBuscaAvancada{
+    float:right;
+    width:56px;
+    height:38px;
+	background:transparent;
+	border:none;
+	cursor:pointer;
+	background-repeat:no-repeat;
+    background-image: url(../../slices/bto-buscaAvancada.png);
+    background-position:left top;
+}
+
+#BuscaAvancada #bto #BtoBuscaAvancada:hover{
+    background-position:left bottom!important;
+}
+
+#cadastreImovel a{
+    float:left;
+    display:inline;
+    margin:17px 0 0 27px;
+    width:195px;
+    height:29px;
+    background-image: url(../../slices/bto-cadastreImovel.png);
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+
+#cadastreImovel a:hover{
+    background-position:left bottom;
+}
+
+#encomendeImovel{
+    margin:20px 0 0 0;
+}
+
+#encomendeImovel a{
+    float:left;
+    display:inline;
+    margin:17px 0 0 27px;
+    width:217px;
+    height:27px;
+    background-image: url(../../slices/bto-encomendeImovel.png);
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+
+#encomendeImovel a:hover{
+    background-position:left bottom;
+}
+
+#simuleFinanciamento{
+    margin:20px 0 0 0;
+    padding:0 0 10px 0;
+}
+
+#headerSimuleFinanciamento{
+    float:left;
+    width:300px;
+    height:45px;
+    background-image: url(../../slices/header-simuleFinanciamento.jpg);
+    background-repeat:no-repeat;
+}
+
+#conteudoSimuleFinanciamento{
+    float:left;
+    display:inline;
+}
+
+#conteudoSimuleFinanciamento ul{
+    float:left;
+    display:inline;
+    margin: 13px 0 0 20px;
+}
+
+#conteudoSimuleFinanciamento ul li{
+    float:left;
+    display:inline;
+}
+
+#conteudoSimuleFinanciamento ul li a{
+    float:left;
+    display:inline;
+    text-indent:-9999px;
+    background-repeat:no-repeat;
+    background-position:left top;
+}
+
+#conteudoSimuleFinanciamento ul li a:hover{
+    background-position:left bottom;
+}
+
+#conteudoSimuleFinanciamento p{
+    float:left;
+    width:100%;
+    margin:16px 0 0 0;
+    text-align:center;
+    font-size:11px;
+    color:#376390;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+#imgBradesco a{
+    width:25px;
+    height:25px;
+    margin:3px 19px 0 19px;
+    background-image: url(../../slices/bto-bradesco.jpg);
+    background-repeat:no-repeat;
+}
+
+#imgCaixa a{
+    width:30px;
+    height:23px;
+    margin:4px 20px 0 0;
+    background-image: url(../../slices/bto-caixa.jpg);
+    background-repeat:no-repeat;    
+}
+
+#imgItau a{
+    width:21px;
+    height:22px;
+    margin:4px 20px 0 0;
+    background-image: url(../../slices/bto-itau.jpg);
+    background-repeat:no-repeat;
+}
+
+#imgHSBC a{
+    width:33px;
+    height:19px;
+    margin:6px 20px 0 0;
+    background-image: url(../../slices/bto-HSBC.jpg);
+    background-repeat:no-repeat;
+}
+
+#imgSantander a{
+    width:31px;
+    height:28px;
+    background-image: url(../../slices/bto-santander.jpg);
+    background-repeat:no-repeat;
+}
+
+#imgBB a{
+    width:24px;
+    height:25px;
+    margin:3px 0 0 0;
+    background-image: url(../../slices/bto-BB.jpg);
+    background-repeat:no-repeat;
+}
+
+#bgFavoritos{
+    float:left;
+    display:inline;
+    margin:20px 0 0 0;
+    padding:0 0 10px 0;
+    width:300px;
+    height:83px;
+    background-image: url(../../slices/bg-fav.png);
+    background-repeat:no-repeat;
+    background-position:10px 10px;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+#conteudoBgFavoritos{
+    float:right;
+    display:inline;
+    margin:29px 45px 0 0;
+}
+
+#conteudoBgFavoritos h3{
+    font-size:18px;
+    color:#1D2474;
+    font-weight:normal;
+}
+
+#conteudoBgFavoritos a{
+    font-size:13px;
+    color:#1D2474;
+}
+
+.BtVoltar{
+	float:right;
+	margin:-34px -2px 0 0;
+	padding:0 0 15px 0;
+    font-size:14px;
+    color:#333333;
+}
+
+.BtVoltar a{
+	float:left;
+	display:block;
+    color:#333333;
+    font-weight:bold;
+}
+
+.BtVoltar img{
+	border:0;
+}
+
+#ConteudoRodape{
+    float:left;
+    width:100%;
+    margin:-17px 0 0 0;
+    background-image: url(../../slices/bg-conteudoRodape.jpg);
+    background-repeat:no-repeat;
+    background-position: center top;
+}
+
+
+#ConteudoRodape #DadosImob{
+	float:left;
+	width:100%;
+	margin:73px 0 0 0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.headersRodape{
+  	font-size:22px;
+	color:#707070;	
+}
+
+#ConteudoRodape #ImgLogoRodape a{
+	float:left;
+	display:inline;
+	margin:17px 0 0 23px;
+	width:198px;
+	height:66px;
+	background-image:url(../../slices/img-logoRodape.png);
+	background-repeat:no-repeat;
+}
+
+#enderecoRodape{
+  	 float:left;
+	 display:inline;
+	 margin:40px 0 0 40px;
+	 padding:0 0 0 24px;
+	 width:186px;
+	 font-family:Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#1D2473;
+     font-weight:bold;
+	 line-height:18px;
+	 background:url(../../slices/img-casa.jpg) no-repeat 0 0;	
+}
+
+#telefoneRodape{
+	float:left;
+	display:inline;
+	width:186px;
+	margin:40px 0 0 30px;
+	padding:0 0 0 24px;
+	line-height:20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#1D2473;
+    font-weight:bold;
+	background-image:url(../../slices/img-telefone.jpg);
+	background-repeat:no-repeat;
+	background-position:left 4px;
+}
+
+#telefoneRodape span{
+	float:left;
+	width:100%;	
+}
+
+#innerRodapeDireita{
+	float:right;
+	display:inline;
+	margin:0 50px 0 0;
+	width:211px;	
+}
+
+#emailRodape{
+	float:left;
+	display:inline;
+	margin:40px 0 0 16px;
+	padding:0 0 0 30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#1D2473;
+    font-weight:bold;
+	background-image:url(../../slices/img-Mail.jpg);
+	background-repeat:no-repeat;	
+}
+
+#redesSociaisRodape{
+	float:left;
+	width:211px;
+	margin:-1px 0 0 2px;	
+}
+
+#redesSociaisRodape ul{
+	float:left;
+	display:inline;
+	margin:10px 0 0 10px;	
+}
+
+#redesSociaisRodape li{
+	float:left;
+	display:inline;
+	margin:0 8px 0 0;	
+}
+
+#redesSociaisRodape li a{
+	float:left;
+	display:inline;
+	width:29px;
+	height:29px;
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+#redesSociaisRodape li a:hover{
+	background-position:left bottom;
+}
+
+#btoSkype a{
+	background-image:url(../../slices/bto-skype.png);
+}
+
+#btoTwitterRodape a{
+ 	background-image:url(../../slices/bto-Twitter.png);	
+}
+
+#btoFacebookRodape a{
+	background-image:url(../../slices/bto-faceBookRodape.png);	
+}
+
+#txtInfoRodape{
+	float:left;
+	display:inline;
+	width:940px;
+	margin:38px 0 0 25px;
+	font-size:12px;
+	text-align:center;
+	color:#1D2474;	
+}
+
+#informacoesExtras{
+	float:left;
+	width:100%;
+	border-bottom:solid 3px #277647;
+	margin:81px 0 0 0;	
+	padding:0 0 20px 0;
+}
+
+#ConteudoRodape #Microsistec{
+	float:left;
+	display:inline;
+	margin:0 0 0 25px;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	color:#FFF;
+}
+
+#ConteudoRodape #Microsistec a{
+	text-decoration:none;
+	color:#FFF;
+}
+
+#CopyRight{
+	float:right;
+	display:inline;
+	margin:0 17px 0 0;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	color:#FFF;
+}
+
+#AtendimentoOnline img{
+	border:0;
+}
+
+.floatLeftWidth100{
+	float:left;
+	width:100%;	
+}
+
+.boxShadow{
+    float:left;
+    width:300px;
+    min-height:64px;
+    box-shadow:1px 1px 1px #D6D7DA;
+    -moz-box-shadow: 0 0 5px #D6D7DA;
+    -webkit-box-shadow: 0 0 5px #D6D7DA;
+    border-radius:5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border:solid 5px #F0F0F0;
+    background-color:#FFF;
+}
+
+
+.Alerta{
+	 float:left;
+	 width:100%;
+	 text-align:center;
+	 font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	 font-size:13px;
+}

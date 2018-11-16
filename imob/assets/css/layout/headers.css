@@ -1,0 +1,125 @@
+/*--Classe usada para header Uniforme e com texto--*/
+
+.bgHeader{
+	float:left;
+	display:inline;
+	width:100%;
+    padding:0 0 8px 0;
+    text-indent:8px;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	text-align:left;
+    color:#939393;
+    text-shadow:1px 1px 1px #FFF;
+    border-bottom:solid 1px #DADADA;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+}
+.normalTextBox{
+	    padding: 10px;
+    	font-family: monospace;
+}
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+#MaisInformacoes #HeaderMaisInformacoes {
+	background-image:url(../../slices/header-MaisInformacoes.jpg);
+	background-repeat:no-repeat;
+	height:29px;
+	text-indent:-9999px;
+	margin:10px 0;
+}
+
+#IndicarImovel #HeaderIndiqueImovel {
+	background-image:url(../../slices/header-IndiqueImovel.jpg);
+	background-repeat:no-repeat;
+	height:29px;
+	text-indent:-9999px;
+	margin:10px 0;
+}
+
+#IndicarImovel #HeaderIndiqueImovel {
+	background-image:url(../../slices/header-IndiqueImovel.jpg);
+	background-repeat:no-repeat;
+	height:32px;
+	text-indent:-9999px;
+	margin:10px 0;
+}
+
+#FaleConosco #HeaderFaleConosco {
+	background-image:url(../../slices/header-FaleConosco.jpg);
+	background-repeat:no-repeat;
+	height:32px;
+	text-indent:-9999px;
+	margin:10px 0;	
+}
+
+#SobMedida #HeaderSobEncomenda{
+	background-image:url(../../slices/header-SobEncomenda.jpg);
+	background-repeat:no-repeat;
+	height:32px;
+	text-indent:-9999px;
+	margin:10px 0;	
+}
+
+#CadastroImovel #HeaderCadastreImovel{
+	background-image:url(../../slices/header-CadastreImovel.jpg);
+	background-repeat:no-repeat;
+	height:32px;
+	text-indent:-9999px;
+	margin:10px 0;		
+}
+
+#Noticias #headerNoticias{}
+
+#Localizacao #HeaderLocalizacao {}
+
+#SimuleFinanciamento #HeaderFinanciamento {}
+
+#Empresa #HeaderEmpresa{}
+
+#TrabalheConosco #HeaderTrabalheConosco {
+	background-image:url(../../slices/header-TrabalheConosco.jpg);
+	background-repeat:no-repeat;
+	height:32px;
+	text-indent:-9999px;
+	margin:10px 0;	
+}
+
+#ResultadoFavoritos #HeaderFavoritos{}
+
+#LinksUteis #HeaderLinks{}
+
+#LigamosVoce #HeaderLigamosVoce {
+	background-image:url(../../slices/header-LigamosVoce.jpg);
+	background-repeat:no-repeat;
+    background-position:center top;
+	height:48px;
+	text-indent:-9999px;
+	margin:10px 0;
+}

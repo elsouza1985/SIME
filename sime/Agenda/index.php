@@ -71,7 +71,7 @@ $('.fe-chevron-left').on('click',function(){
 			<a href="#"><i class="fe fe-chevron-left" style="margin-right: 10px"></i></a>
 			<input type="hidden" id="dataAgenda" />
 			<input type="text" id="txtdataAgenda" readonly="true"
-				style="border: 0px; width: 195px;"></input> <a href="#"><i
+				style="border: 0px; width: 195px;" /><a href="#"><i
 				class="fe fe-chevron-right" style="margin-left: 10px"></i></a>
 
 		</div>

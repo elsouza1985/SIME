@@ -1,0 +1,235 @@
+@font-face {
+    font-family: 'ArialBold';
+    src: url('../Fontes/arial/arialbd-webfont.eot');
+    src: url('../Fontes/arial/arialbd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../Fontes/arial/arialbd-webfont.woff') format('woff'),
+         url('../Fontes/arial/arialbd-webfont.ttf') format('truetype'),
+         url('../Fontes/arial/arialbd-webfont.svg#ArialBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ArialRegular';
+    src: url('../Fontes/arial/arial-webfont.eot');
+    src: url('../Fontes/arial/arial-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../Fontes/arial/arial-webfont.woff') format('woff'),
+         url('../Fontes/arial/arial-webfont.ttf') format('truetype'),
+         url('../Fontes/arial/arial-webfont.svg#ArialRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ArialItalic';
+    src: url('../Fontes/arial/ariali-webfont.eot');
+    src: url('../Fontes/arial/ariali-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../Fontes/arial/ariali-webfont.woff') format('woff'),
+         url('../Fontes/arial/ariali-webfont.ttf') format('truetype'),
+         url('../Fontes/arial/ariali-webfont.svg#ArialItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('../Fontes/georgia_regular/georgia.eot');
+    src: url('../Fontes/georgia_regular/georgia.eot?#iefix') format('embedded-opentype'),
+         url('../Fontes/georgia_regular/georgia.woff') format('woff'),
+         url('../Fontes/georgia_regular/georgia.ttf') format('truetype'),
+         url('../Fontes/georgia_regular/georgia.svg#georgia') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Georgia-Bold';
+    src: url('../Fontes/georgia_bold/georgiab.eot');
+    src: url('../Fontes/georgia_bold/georgiab.eot?#iefix') format('embedded-opentype'),
+         url('../Fontes/georgia_bold/georgiab.woff') format('woff'),
+         url('../Fontes/georgia_bold/georgiab.ttf') format('truetype'),
+         url('../Fontes/georgia_bold/georgiab.svg#georgiab') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CalibriBold';
+    src: url('../Fontes/Calibri/calibrib-webfont.eot');
+    src: url('../Fontes/Calibri/calibrib-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../Fontes/Calibri/calibrib-webfont.woff') format('woff'),
+         url('../Fontes/Calibri/calibrib-webfont.ttf') format('truetype'),
+         url('../Fontes/Calibri/calibrib-webfont.svg#CalibriBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'CalibriRegular';
+    src: url('../Fontes/Calibri/calibri-webfont.eot');
+    src: url('../Fontes/Calibri/calibri-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../Fontes/Calibri/calibri-webfont.woff') format('woff'),
+         url('../Fontes/Calibri/calibri-webfont.ttf') format('truetype'),
+         url('../Fontes/Calibri/calibri-webfont.svg#CalibriRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'MyriadPro-Regular';
+	src: url('../Fontes/myriadpro/myriadpro-regular.eot');
+	src: url('../Fontes/myriadpro/myriadpro-regular.eot?#iefix') format('embedded-opentype'),
+		 url('../Fontes/myriadpro/myriadpro-regular.woff') format('woff'),
+    	 url('../Fontes/myriadpro/myriadpro-regular.ttf') format('truetype'),
+		 url('../Fontes/myriadpro/myriadpro-regular.svg#myriadpro-regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+		@font-face {
+				font-family: 'AppleGaramondLight-Italic';
+				src: url('../Fontes/applegaramondlight/applegaramondlight-italic.eot');
+				src: url('../Fontes/applegaramondlight/applegaramondlight-italic.eot?#iefix') format('embedded-opentype'),
+						 url('../Fontes/applegaramondlight/applegaramondlight-italic.woff') format('woff'),
+						 url('../Fontes/applegaramondlight/applegaramondlight-italic.ttf') format('truetype'),
+						 url('../Fontes/applegaramondlight/applegaramondlight-italic.svg#applegaramondlight-italic') format('svg');
+				font-weight: normal;
+				font-style: normal;
+		}
+
+
+.appleFontStyle{font-family: 'AppleGaramondLight-Italic';}
+.myriadFont{font-family: 'MyriadPro-Regular';}
+
+.arialFontStyle{font-family: 'ArialRegular';}
+.arialFontStyle a{font-family: 'ArialRegular';}
+
+.arialBoldFontStyle{font-family: 'ArialBold';}
+.arialBoldFontStyle a{font-family: 'ArialBold';}
+
+.georgiaRegularFont{font-family: 'Georgia'!important;}
+.georgiaRegularFont a{font-family: 'Georgia'!important;}
+
+.georgiaBoldFont{font-family: 'Georgia-Bold'!important;}
+.georgiaBoldFont a{font-family: 'Georgia-Bold'!important;}
+
+.calibriNormalFontStyle{font-family: 'CalibriRegular';}
+.calibriNormalFontStyle a{font-family: 'CalibriRegular';}
+
+.calibriBoldFontStyle{font-family: 'CalibriBold';}
+.calibriBoldFontStyle a{font-family: 'CalibriBold';}
+
+
+html{
+	min-height:100%;
+}
+
+body{
+    background-image: url(../slices/bg-body.jpg);
+    background-repeat:repeat-x;
+    background-position:left 190px;
+    background-color:#e8e9e4;
+}
+
+#Bg{}
+
+#Linha1{
+	float:left;
+	width:100%;
+    background-image: url(../slices/bg-topo.jpg);
+    background-repeat:no-repeat;
+    background-position:center top;
+}
+
+#Linha1 #ConteudoLinha1{
+	margin:auto;
+	width:990px;	
+}
+
+#Linha2{
+	float:left;
+	width:100%;	
+}
+
+#Linha2 #Pagina{
+	margin:auto;
+	width:960px;	
+}
+
+#Pagina #ColunaEsquerda{
+	float:left;
+	width:100%;	
+}
+
+#Pagina #ColunaEsquerda #Topo{}
+
+#Pagina #ColunaEsquerda #CorpoConteudo{
+	float:left;
+	width:100%;	
+}
+
+#CorpoConteudo #BarraLateralEsquerda{
+	float:left;
+	display:inline;
+	width:230px;
+}
+
+#CorpoConteudo #BarraLateralDireita{
+	float:right;
+	display:inline;
+	width:230px;		
+}
+
+#menuEsquerdo{
+    float:left;
+    width:311px;
+    margin:28px 0 0 0;
+}
+
+#CorpoConteudo #ConteudoPrincipal{
+	float:left;
+	display:inline;
+	width:100%;	
+}
+
+.DisplayNone{
+	display:none !important;
+}
+
+.conteudoDetalhes{
+	float:left !important;
+	width:960px !important;
+	margin:0 !important;
+}
+
+#CorpoConteudo #ConteudoPrincipal #MargemConteudoPrincipal{}
+
+#Pagina #ColunaEsquerda #Rodape{}
+
+#Pagina #ColunaExterna{}
+
+#Linha3{
+	float:left;
+	width:100%;
+    margin:65px 0 0 0;
+    min-height:324px;
+    background-image: url(../slices/bg-rodape.jpg);
+    background-repeat:repeat-x;
+}
+
+#Linha3 #Rodape{
+	margin:auto;
+	width:990px;	
+}
+
+
+/* Div microformats*/
+#microformat{
+	display:none;
+}

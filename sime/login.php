@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION['Segmento'] = $Segmento;
                             $_SESSION['UserID'] = $UserId;
                             $_SESSION['LojaID'] = $LojaID;
-                            header("location: /SIME/index.php");
+                            header("location: /sime/index.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = 'Senha incorreta!';

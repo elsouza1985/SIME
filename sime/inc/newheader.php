@@ -56,7 +56,8 @@ var url = window.location.origin +"/SIME/";
 <body class="">
 	<div class="page">
 		<div class="page-main">
-			<div class="header py-4">
+			<div class="header py-4" style="border:none" >
+			
 				<div class="container">
 					<div class="d-flex">
 						<a class="header-brand" href="<?php echo BASEURL; ?>/index.php"> <img
@@ -139,7 +140,7 @@ var url = window.location.origin +"/SIME/";
 					<div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
 						<div class="container">
 							<div class="row align-items-center">
-								<div class="col-lg-3 ml-auto">
+								<div class="col-lg-3 ml-auto" style="display:none" >
 									<form class="input-icon my-3 my-lg-0">
 										<input type="search" class="form-control header-search"
 											placeholder="Search…" tabindex="1">

@@ -24,7 +24,7 @@
                                         aquele que utiliza o que tem de mais importante, o<span> talento!</span></p>
                                  
                                 <div class="button discover_button">
-                                    <a href="#" class="d-flex flex-row align-items-center justify-content-center">saiba mais<img src="images/arrow_right.svg" alt=""></a>
+                                    <a href="#qs" class="d-flex flex-row align-items-center justify-content-center">saiba mais<img src="images/arrow_right.svg" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -34,17 +34,17 @@
 
             <!-- Slider Item -->
             <div class="owl-item main_slider_item">
-                <div class="main_slider_item_bg" style="background-image:url(images/main_slider_1_0.jpg)"></div>
+                <div class="main_slider_item_bg" style="background-image:url(images/vendedor1.jpg)"></div>
                 <div class="main_slider_shapes"><img src="images/main_slider_shapes.png" alt="" style="width: 100% !important;"></div>
                 <div class="container">
                     <div class="row">
                         <div class="col slider_content_col">
                             <div class="main_slider_content">
                                 <h1>Sim, nós podemos <span>ajudar!</span></h1>
-                                <h1>Com <span>soluções</span> simples e inteligentes</h1>
+                                <h1>Com <span>soluções</span> simples e descomplicadas</h1>
                                 <p>Sem <span>processos</span> complexos, caros e fora da realidade do seu negócio.</p>
                                 <div class="button discover_button">
-                                    <a href="#" class="d-flex flex-row align-items-center justify-content-center">saiba mais<img src="images/arrow_right.svg" alt=""></a>
+                                    <a href="#qs" class="d-flex flex-row align-items-center justify-content-center">saiba mais<img src="images/arrow_right.svg" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
 </div>
     
 <!-- Features -->
-<div style="display: none">
+<div >
 <div class="features">
     <div class="container">
         <div class="row align-items-end">
@@ -125,8 +125,10 @@
                     <div class="icon_container d-flex flex-column justify-content-end">
                         <img src="images/icon_1.svg" alt="">
                     </div>
-                    <h3>modern design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venen atis ultrices.</p>
+                    <h3>Interface amigável</h3>
+                    <p>Todo o sistema é desenvolvido utilizando o que há de mais moderno em tecnologia, 
+                        usamos o conceito de associação compreensiva, 
+                        aliamos a facilidade de utilização.</p>
                 </div>
             </div>
             
@@ -137,8 +139,11 @@
                     <div class="icon_container d-flex flex-column justify-content-end">
                         <img src="images/icon_2.svg" alt="">
                     </div>
-                    <h3>easy to use</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venen atis ultrices.</p>
+                    <h3>Fácil de usar</h3>
+                    <p>Informações diretas e fáceis de entender,
+                        nada de treinamentos e ferramentas complexas, tudo ao alcançe de 3 cliques, simples e transparente para você focar no que é mais importante.
+
+                    </p>
                 </div>
             </div>
             
@@ -149,8 +154,8 @@
                     <div class="icon_container d-flex flex-column justify-content-end">
                         <img src="images/icon_3.svg" alt="">
                     </div>
-                    <h3>well documented</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venen atis ultrices.</p>
+                    <h3>Ferramentas poderosas</h3>
+                    <p>As ferramentas mais poderosas para gestão de negócios, utilizadas pelas maiores empresas do mundo, aplicadas ao seu negócio, de forma simples e com baixo custo.</p>
                 </div>
             </div>
 
@@ -162,45 +167,35 @@
 
 <div class="about prlx_parent">
     <!-- https://unsplash.com/@nativemello -->
-    <div class="about_background prlx" style="background-image:url(images/about_background.jpg)"></div>
+    <div class="about_background prlx" style="background-image:url(images/feira.jpeg"></div>
     <div class="about_shapes"><img src="images/about_shapes.png" alt=""></div>
 
     <div class="container">
-        <div class="row">
+        <div class="row" id="qs">
             <div class="col-lg-6 offset-lg-3 text-center section_title">
-                <h2>about our project<span>z</span></h2>
+                <h2 >Quem somos<span>V⁹</span></h2>
             </div>
         </div>
         <div class="row">
 
             <div class="col-lg-6">
-                <div class="about_text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis ante, ac consectetur diam neque eget quam. Etiam feugiat augue et varius blandit. Praesent mattis, eros a sodales commodo, justo ipsum rutrum mauris, sit amet egestas metus.</p>
-                    <img src="images/signiture.png" alt="">
+                <div class="about_text" style="color: floralwhite">
+                    <p>Somos um grupo de pessoas com uma nova visão sobre a tecnologia.
+                         nós acreditamos que é possível transformar a vida das pessoas 
+                com auxilio de soluções descomplicadas e acessíveis. 
+                Trabalhamos com inteligência e coração, nossos produtos são desenvolvidos por pessoas e para 
+                pessoas, aliando simplicidade na utilização e alta qualidade nos resultados, atuamos como um aliado poderoso que entende e fala a linguagem do seu negócio
+                  onde quer que estejam.</p>
+                   <!--<img src="imMages/signiture.png" alt="">-->
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="skills_container">
-                    <ul class="progress_bar_container col_12 clearfix">
-                        <li class="pb_item">
-                            <div id="skill_1_pbar" class="skill_bars" data-perc="0.85" data-name="skill_1_pbar"></div>
-                            <h5>management</h5>
-                        </li>
-                        <li class="pb_item">
-                            <div id="skill_2_pbar" class="skill_bars" data-perc="1" data-name="skill_2_pbar"></div>
-                            <h5>design</h5>
-                        </li>
-                        <li class="pb_item">
-                            <div id="skill_3_pbar" class="skill_bars" data-perc="0.75" data-name="skill_3_pbar"></div>
-                            <h5>projects</h5>
-                        </li>
-                        <li class="pb_item">
-                            <div id="skill_4_pbar" class="skill_bars" data-perc="0.95" data-name="skill_4_pbar"></div>
-                            <h5>inspiration</h5>
-                        </li>
-                    </ul>
-                </div>
+                <div class="about_text" style="color: floralwhite">
+                    Nossa missão vai além de sermos a maior empresa do segmento,
+                    ela está enraizada na essência dos nossos colaboradores... 
+                    Compartilhamos um sentimento comum de que podemos fazer mais e melhor para o desenvolvimento da sociedade.
+             </div>
             </div>
 
         </div>
@@ -214,7 +209,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 text-center section_title section_title_dark">
-                <h2>testimonials<span>z</span></h2>
+                <h2>Declarações<span>V⁹</span></h2>
             </div>
         </div>
         <div class="row">
@@ -230,32 +225,38 @@
                         <div class="owl-item testimonials_item d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="testimonials_content">
                                 <div class="test_user_pic"><img src="images/test_user.jpg" alt="https://unsplash.com/@michaeldam"></div>
-                                <div class="test_name">maria williams</div>
-                                <div class="test_title">Company CEO</div>
+                                <div class="test_name">Fernanda Silva</div>
+                                <div class="test_title">Manicure</div>
                                 <div class="test_quote">"</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, olor sit amet, consectetur adipiscing eli quam tincidunt venen atis ultrices, est libero olor sit amet, consectetur adipiscing eli mattis ante.</p>
+                                <p>Hoje em dia por menor que seja o negócio, precisamos ter sistemas para auxiliar, num agendamento de clientes, na reposição dos materiais. 
+                                     Vejo que os fabricantes de tecnologia não olham para nosso mercado.</p>
                             </div>
                         </div>
 
                         <!-- Testimonials Item -->
                         <div class="owl-item testimonials_item d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="testimonials_content">
-                                <div class="test_user_pic"><img src="images/test_user.jpg" alt="https://unsplash.com/@michaeldam"></div>
-                                <div class="test_name">maria williams</div>
-                                <div class="test_title">Company CEO</div>
+                                <div class="test_user_pic"><img src="images/pessoa1.jpg" alt="https://unsplash.com/@michaeldam"></div>
+                                <div class="test_name">Emerson Oliveira</div>
+                                <div class="test_title">Cabeleireiro</div>
                                 <div class="test_quote">"</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, olor sit amet, consectetur adipiscing eli quam tincidunt venen atis ultrices, est libero olor sit amet, consectetur adipiscing eli mattis ante.</p>
+                                <p> Sinto que meu negócio poderia ser mais eficiente, muitas vezes eu passei por dificuldades por falta de planejamento...
+                                    
+                                </p>
                             </div>
                         </div>
 
                         <!-- Testimonials Item -->
                         <div class="owl-item testimonials_item d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="testimonials_content">
-                                <div class="test_user_pic"><img src="images/test_user.jpg" alt="https://unsplash.com/@michaeldam"></div>
-                                <div class="test_name">maria williams</div>
-                                <div class="test_title">Company CEO</div>
+                                <div class="test_user_pic"><img src="images/pessoa2.jpg" alt="https://unsplash.com/@michaeldam"></div>
+                                <div class="test_name">Fernando Silveira</div>
+                                <div class="test_title">Vendedor ambulante</div>
                                 <div class="test_quote">"</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, olor sit amet, consectetur adipiscing eli quam tincidunt venen atis ultrices, est libero olor sit amet, consectetur adipiscing eli mattis ante.</p>
+                                <p>
+                                    Normalmente controlo meu trabalho anotando no meu caderninho de bolso,
+                               Mas nem tudo que vendo é anotado, geralmente reponho conforme vendo... 
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -356,16 +357,20 @@
 
         <div class="row">
             <div class="col-lg-6 offset-lg-3 text-center section_title section_title_dark">
-                <h2>our clients<span>z</span></h2>
+                <h2>Nossos Clientes<span>V⁹</span></h2>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, olor sit amet, consectetur adipiscing eli quam tincidunt venen atis ultrices, est libero olor sit amet, consectetur adipiscing eli mattis ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis quam tincidun ante, ac consectetur diam neque eget quam. </p>
+                <p>Atuamos com soluções para o micro e pequeno empresário, e com foco especial para o micro empreendedor individual, o conhecido "trabalhador autonômo".
+                    De forma simples e descomplicadas auxiliamos nossos clientes na realização de suas metas.
+                </p>
             </div>
             <div class="col-lg-6">
-                <p>Amet, consectetur adipiscing elit. Phasellus vestibulum, olor sit amet, consectetur adipiscing eli quam tincidunt venen atis ultrices, quam tincidunest libero olor sit amet, consectetur adipiscing eli mattis ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis quam tincidun ante, ac cquam tincidunonsectetur diam neque eget quam.</p>
+                <p>Nossas ferramentas de gestão estratégica, permitem que nossos clientes visualizem seus negócios e tomem as
+                    melhores decisões amparados por dados expostos em uma linguagem natural ao seu cotidiano.
+                </p>
             </div>
         </div>
 
@@ -374,7 +379,7 @@
                 
                 <!-- Clients Slider -->
 
-                <div class="clients_slider_container">
+                <div class="clients_slider_container" style="display:none">
                     <div class="owl-carousel owl-theme clients_slider">
 
                         <!-- Slider Item -->
@@ -415,21 +420,23 @@
 
 <div class="contact prlx_parent">
     <!-- <div class="contact_background parallax-window" data-parallax="scroll" data-speed="0.7" data-image-src="images/contact_background.jpg"></div> -->
-    <div class="contact_background prlx" style="background-image: url(images/contact_background.jpg);"></div>
+    <div class="contact_background prlx" style="background-image: url(images/hands.jpg);"></div>
     <div class="contact_shapes"><img src="images/contact_shape.png" alt=""></div>
     <div class="container">
         
         <div class="row">
             <div class="col-lg-6 offset-lg-3 text-center section_title contact_title">
-                <h2>let's work together<span>z</span></h2>
+                <h2>Vamos trabalhar juntos!<span>V⁹</span></h2>
             </div>
         </div>
         
         <div class="row">
             <div class="col-lg-10 offset-lg-1 text-center contact_text">
-                <p>Dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venen atis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis ante, ac consectetur diam neque eget quam.</p>
+                <p>Temos a solução ideal para seu negócio, simples, descomplicada, ágil e confiável... 
+                    </p>
+                    <p>Seu sonho é a nossa meta!</p>
                 <div class="button contact_button">
-                    <a href="contact.html" class="d-flex flex-row align-items-center justify-content-center">contact<img src="images/arrow_right.svg" alt=""></a>
+                    <a href="contact.html" class="d-flex flex-row align-items-center justify-content-center">contato<img src="images/arrow_right.svg" alt=""></a>
                 </div>
             </div>
         </div>

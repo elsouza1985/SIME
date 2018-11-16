@@ -1,0 +1,17 @@
+
+  @media screen and (min-width:425px) {
+    .imgBrand{
+        max-width: 150px;
+      }
+    .imgUp{
+        max-width:70px;
+        max-height:50px;
+      }
+  }
+  .imgBrand{
+    max-width: 275px;
+  }
+  .imgUp{
+    max-width:100px;
+    max-height: 70px;
+  }
