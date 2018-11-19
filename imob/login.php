@@ -22,10 +22,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $password = trim($_POST['password']);
     }
-    
+    loginUser($username,$password);
+  }
+  function open_database() {
+    try {
+      $conn = new mysqli ( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
+      return $conn;
+    } catch ( Exception $e ) {
+      echo $e->getMessage ();
+      return null;
+    }
+  }
+  function close_database($conn) {
+    try {
+      mysqli_close ( $conn );
+    } catch ( Exception $e ) {
+      echo $e->getMessage ();
+    }
+  }
+  function loginUser($username,$password){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
+        $db = open_database();
         $sql = "SELECT NomeUsuario, SenhaUsuario, IDUsuario FROM Usuarios WHERE NomeUsuario = ?";
         
         
@@ -55,10 +74,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION['username'] = $username;
                             $_SESSION['userID'] = $UserID;
                             
-                            header("location: /imob/Admin/data.php");
+                            header("location:".BASEURL."index.php");
                         } else{
                             // Display an error message if password is not valid
-                            header("location: /imob/index.php");
+                            header("location:".BASEURL."index.php");
                         }
                     }
                 } else{
@@ -71,95 +90,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         
         // Close statement
-        mysqli_stmt_close($stmt);
+       // mysqli_stmt_close($stmt);
     }
+    header("location:".BASEURL."index.php");
     
     // Close connection
-    mysqli_close($db);
+    //close_database($db);
 }
 ?>
  
-<!doctype html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Language" content="en" />
-    <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="theme-color" content="#4188c9">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <db rel="icon" href="<?php echo BASEURL; ?>/favicon.ico" type="image/x-icon"/>
-    <db rel="shortcut icon" type="image/x-icon" href="<?php echo BASEURL; ?>/favicon.ico" />
-    <title>JaquelineImoveis</title>
-    <db rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <db rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-    <script src="<?php echo BASEURL; ?>/assets/js/require.min.js"></script>
-    <script>
-      requirejs.config({
-          baseUrl: '.'
-      });
-    </script>
-    <!-- Dashboard Core -->
-    <db href="<?php echo BASEURL; ?>/assets/css/dashboard.css" rel="stylesheet" />
-    <script src="<?php echo BASEURL; ?>/assets/js/dashboard.js"></script>
-    <!-- c3.js Charts Plugin -->
-    <db href="<?php echo BASEURL; ?>/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
-    <script src="<?php echo BASEURL; ?>/assets/plugins/charts-c3/plugin.js"></script>
-    <!-- Google Maps Plugin -->
-    <db href="<?php echo BASEURL; ?>/assets/plugins/maps-google/plugin.css" rel="stylesheet" />
-    <script src="<?php echo BASEURL; ?>/assets/plugins/maps-google/plugin.js"></script>
-    <!-- Input Mask Plugin -->
-    <script src="<?php echo BASEURL; ?>/assets/plugins/input-mask/plugin.js"></script>
-  </head>
-
-<body class="">
-    <main class="container">
-    <div class="page">
-      <div class="page-single">
-        <div class="container">
-          <div class="row">
-            <div class="col col-login mx-auto">
-              <div class="text-center mb-6">
-                <img src="<?php echo BASEURL; ?>/assets/images/valor-logo.png" class="h-6" alt="">
-              </div>
-              
-              <form class="card" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <div class="card-body p-6">
-                  <div class="card-title">Login para sua conta</div>
-                  <div class="form-group">
-                    <label class="form-label">Usuario</label>
-                    <input type="text" class="form-control" name="username"  aria-describedby="emailHelp" placeholder="Usuario" value="<?php echo $username; ?>">
-                 <span class="help-block"><?php echo $username_err; ?></span>
-                  </div>
-                  <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                    <label class="form-label">
-                      Senha
-                      <a href="<?php echo BASEURL; ?>/forgot-password.html" class="float-right small">Eu esqueci a senha</a>
-                    </label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                 <span class="help-block"><?php echo $password_err; ?></span>
-                  </div>
-                  <div class="form-group">
-                    <label class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" />
-                      <span class="custom-control-label">Lembrar</span>
-                    </label>
-                  </div>
-                  <div class="form-footer">
-                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                  </div>
-                </div>
-              </form>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-

@@ -149,6 +149,7 @@ background-repeat:no-repeat;
 .imgUp{
   max-width:100px;
   max-height: 100px;
+  padding: 5px;
 }
 #BuscaAvancada #bto #BtoBuscaAvancada:hover{
   background-position:left bottom!important;
@@ -170,7 +171,7 @@ background-repeat:no-repeat;
   background: #fff;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 4400px;
   z-index: 9;
 }
 .botaoContato{
@@ -250,7 +251,7 @@ background-repeat:no-repeat;
 }
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 12rem;
+  height: 40rem;
   background-color: #777;
 }
 
@@ -258,7 +259,7 @@ background-repeat:no-repeat;
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 15%;
+  min-width: 100%;
   height: 12rem;
 }
 .DescClass{
@@ -318,7 +319,43 @@ background-repeat:no-repeat;
 }
 /* RESPONSIVE CSS
 -------------------------------------------------- */
+@media (min-width: 600px) {
+  .imgBrand{
+    max-width: 275px;
+  }
+  .featurette-heading {
+    font-size: 50px;
+  }
+  .text-muted{
+    width: 355px;
+    margin-left: -80px;
+  }
+  .carousel-item1 {
+    height: 415px!important;
+    width: 800px!important;
+    background-color: #777;
+  }
+  .carousel-item1 > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 550px;
+    width: 550px;
+    height: 400px;
+    max-height: 400px;
+  }
+  .carousel{
+    width: 450px;
+    margin-left: -33px
+  }
+  .box-primary{
+    margin-left: 25%;
+    max-width: 100%;
+    width: 350px;
+    padding-left: 56px;
 
+  }
+}
 @media (min-width: 390px) {
   #content-wrapper{
     text-align: center;
@@ -350,15 +387,29 @@ background-repeat:no-repeat;
     font-size: 50px;
   }
   .carousel-item {
-    height: 32rem;
+    height: 215px;
+    width: 350px;
     background-color: #777;
   }
   .carousel-item > img {
     position: absolute;
     top: 0;
     left: 0;
-    min-width: 100%;
-    height: 32rem;
+    max-width: 350px;
+    width: 350px;
+    height: 200px;
+    max-height: 200px;
+  }
+  .carousel{
+    width: 450px;
+    margin-left: -33px
+  }
+  .box-primary{
+    margin-left: 25%;
+    max-width: 100%;
+    width: 350px;
+    padding-left: 56px;
+
   }
 }
 

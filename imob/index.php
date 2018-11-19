@@ -4,8 +4,7 @@ require_once 'config.php';
    
 
     ?>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
+   
         <?php 
            $sql ="SELECT Distinct Imoveis.ImovelID,ImovelDescricao,ImovelDestaque, TipoImovel,ImovelValor,Images.Caminho as 'Fotos',
            ImovelEndereco,ImovelVagas,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
@@ -22,43 +21,28 @@ require_once 'config.php';
            while ($row=mysqli_fetch_array($result))
            { 
             if($row['ImovelDestaque']==1){
-              echo(' <li data-target="#myCarousel" data-slide-to="'.$numRow.'" ></li>');
-             if($numDestaque == 0){
-              $ImoveisDestaque.= '<div class="carousel-item active">
-              <img class="first-slide" src="Admin/uploads/'.$row['Fotos'].'" alt="First slide">
-                <div class="container">
-                  <div class="carousel-caption d-none d-md-block text-center fundo">
-                    
-                    <p>'.$row['TipoImovel'].', '.$row['ImovelQuartos'].' Dorms. ' .$row['ImovelNegociacao'].' - '.$row['Bairro'].'</p>
-                    <h1 >R$ <label class="valorM">'.$row['ImovelValor'].'</label></h1>
-                    <p><a class="btn btn-lg btn-primary" href="../imob/view_data.php?vID='.$row['ImovelID'].'" role="button">Saiba mais</a></p>
-                  </div>
-                </div>
-              </div>';
-             } else{
-               $ImoveisDestaque.= '<div class="carousel-item ">
-               <img class="first-slide" src="Admin/uploads/'.$row['Fotos'].'" alt="First slide">
-                 <div class="container">
-                   <div class="carousel-caption d-none d-md-block text-center fundo">
-                   <p>'.$row['TipoImovel'].', '.$row['ImovelQuartos'].' Dorms. ' .$row['ImovelNegociacao'].' - '.$row['Bairro'].'</p>
-                   <h1 >R$ <label class="valorM">'.$row['ImovelValor'].'</label></h1>
-                     <p><a class="btn btn-lg btn-primary" href="'.BASEURL.'view_data.php?vID='.$row['ImovelID'].'" role="button">Saiba mais</a></p>
-                   </div>
-                 </div>
-               </div>';
-             }
-             $numDestaque++;
+             
+             
+               $ImoveisDestaque.= '<div>
+               <div style="position:absolute;top:150px;left:25%;width:450px;height:62px;z-index:0;font-size:16px;color:white;line-height:24px;text-align:left;padding:5px;box-sizing:border-box;">
+               <p>'.$row['TipoImovel'].', '.$row['ImovelQuartos'].' Dorms. ' .$row['ImovelNegociacao'].' - '.$row['Bairro'].'</p>
+                   <h1 ><label class="valorM">'.$row['ImovelValor'].'</label></h1>
+                     <p><a class="btn btn-lg btn-primary" rel="modal:open"  href="'.BASEURL.'view_data.php?vID='.$row['ImovelID'].'" role="button">Saiba mais</a></p>
+               </div>
+               <img data-u="image" src="'.BASEURL.'Admin/uploads/'.$row['Fotos'].'" />
+           </div>';
+             
              }
              if($numRow < 6){
             $ImoveisPagina .='<div class="col-lg-4">
-            <div class="BoxDestaqueTopo boxShadow" onclick="self.location.href="../imob/view_data.php?vID='.$row['ImovelID'].'">
+            <div class="BoxDestaqueTopo boxShadow" >
                 <div class="DisponibilidadeImovelDestaques">
                   <span>'.$row['ImovelNegociacao'].'</span>    
                 </div>
                 <div class="ModeloConteudoGeral">
                       <div class="ImgFoto">
                            <div class="ModeloFoto">
-                              <img src="Admin/uploads/'.$row['Fotos'].'" class="FotoImovel" alt="">
+                              <img src="'.BASEURL.'Admin/uploads/'.$row['Fotos'].'" class="FotoImovel" alt="">
                           </div>
                       </div>
                       <div class="ModeloContainerInner">
@@ -69,18 +53,19 @@ require_once 'config.php';
                             <div class="ModeloComposicaoImovel">
                             <div><span class="QtdeDepedencias">'.$row['ImovelQuartos'].'</span> dorms. </div> 
                             <div class="SegundaSaidaObservacao">
-                              '.$row['ImovelDescricao'].'
+                              '.substr($row['ImovelDescricao'],0,102).'
                             </div>
                           </div>
                       </div>
+                     
                       <div class="bottomValores normalTextBox">
                           <div class="TerceiraSaidaPreco">
-                              <span>R$ <label class="valorM">'.$row['ImovelValor'].'</label></span>            </div>
+                              <span><label class="valorM">'.$row['ImovelValor'].'</label></span>            </div>
                               <div class="btoDetalheDestaque"></div>
                           </div>  
                       </div>
                       <p>
-                      <a href="../imob/view_data.php?vID='.$row['ImovelID'].'" onclick="removeBackground();" rel="modal:open" class="btn btn-primary btn-lg">
+                      <a href="'.BASEURL.'view_data.php?vID='.$row['ImovelID'].'" onclick="removeBackground();" rel="modal:open" class="btn btn-primary btn-lg">
                          <span class="glyphicon glyphicon-print"></span> Detalhes 
                         </a>
                       </p> 
@@ -95,18 +80,113 @@ require_once 'config.php';
          ?>
        
   
-        </ol>
-      <div class="carousel-inner" role="listbox">
-        <?php echo($ImoveisDestaque);?>
-      </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Proximo</span>
-      </a>
+        <script src="<?php echo BASEURL; ?>js/jssor.slider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jssor_1_slider_init = function() {
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $Idle: 2000,
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+    <style>
+        /* jssor slider loading skin [i] css */
+        .jssorl-009-[i] img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-009-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .jssorb052 .i {position:absolute;cursor:pointer;}
+        .jssorb052 .i .b {fill:#000;fill-opacity:0.3;}
+        .jssorb052 .i:hover .b {fill-opacity:.7;}
+        .jssorb052 .iav .b {fill-opacity: 1;}
+        .jssorb052 .i.idn {opacity:.3;}
+
+        .jssora053 {display:block;position:absolute;cursor:pointer;}
+        .jssora053 .a {fill:none;stroke:#fff;stroke-width:640;stroke-miterlimit:10;}
+        .jssora053:hover {opacity:.8;}
+        .jssora053.jssora053dn {opacity:.5;}
+        .jssora053.jssora053ds {opacity:.3;pointer-events:none;}
+    </style>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="<?php echo BASEURL; ?>svg/loading/static-svg/spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+            <?php echo $ImoveisDestaque; ?>
+            
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb052" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora053" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora053" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
+    </div>
+    <script type="text/javascript">jssor_1_slider_init();</script>
+    <!-- #endregion Jssor Slider End -->
     </div>
 
 
@@ -123,7 +203,12 @@ require_once 'config.php';
 
 <script>
    $(document).ready(function(){
-      $('.valorM').mask('000.000.000.000.000,00', {reverse: true});  
+      var fieldsval = $('.valorM');
+      for (var i = 0; i < fieldsval.length; i++) {
+            var textVal = $(fieldsval[i]).text();
+            $(fieldsval[i]).text(formatValor(textVal));
+          
+      }
       /*$(window).scroll(function(){
         var lastID = $('.load-more').attr('lastID');
         if(($(window).scrollTop() == $(document).height() - $(window).height()) && (lastID != 0)){

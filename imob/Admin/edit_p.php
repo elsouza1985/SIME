@@ -23,7 +23,7 @@ $sql = "UPDATE Corretores SET CorretorNome='$Nome', CorretorEmail='$email', Corr
 }
 if(mysqli_query($db, $sql))
 {
-	header('location:data.php');
+	header('location:../index.php');
 }
 else
 {

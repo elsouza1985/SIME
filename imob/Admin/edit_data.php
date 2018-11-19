@@ -11,7 +11,7 @@ $viewID = $_GET['uID'];
 
   include('connection.php');
 
-  $sql ="SELECT Imoveis.ImovelID,ImovelDescricao, TipoImovel,ImovelValor,GROUP_CONCAT(Images.Caminho SEPARATOR ';') as 'Fotos',ImovelEndereco,ImovelVagas,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
+  $sql ="SELECT Imoveis.ImovelID,ImovelDescricao, ImovelCondominio,TipoImovel,ImovelValor,GROUP_CONCAT(Images.Caminho SEPARATOR ';') as 'Fotos',ImovelEndereco,ImovelVagas,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
   FROM `Imoveis` 
   inner join Bairro on Imoveis.ImovelBairro = Bairro.BairroID 
   inner join TipoImovel on Imoveis.ImovelTipo = TipoImovel.TipoImovelID 
@@ -35,6 +35,7 @@ $viewID = $_GET['uID'];
       $Quartos = $row['ImovelQuartos'];
       $Vagas = $row['ImovelVagas'];
       $Valor = $row['ImovelValor'];
+      $Condominio = $row['ImovelCondominio'];
       $Negociacao = $row['ImovelNegociacao'];
     }
   }
@@ -43,74 +44,19 @@ $viewID = $_GET['uID'];
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>C.R.U.D</title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
 
-  <header class="main-header">
-    <a href="#" class="logo">
-      <span class="logo-mini"><b>C</b></span>
-      <span class="logo-lg"><b>C</b>RUD</span>
-    </a>
-    <nav class="navbar navbar-static-top">
-	    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-      	</a>
-     	
-     	<div class="navbar-custom-menu">
-     		<ul class="nav navbar-nav">
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-     		</ul>
-     	</div>
-    </nav>
-  </header>
-  <aside class="main-sidebar">
-    <section class="sidebar">
-     
-    </section>
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        
-        <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="data.php"><i class="fa fa-dashboard"></i> Home</a></li>
-      </ol>
-    </section>
     
 
     <section class="content">
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-              <h3 class="box-title">Update</h3>
+              <h3 class="box-title">Editar Imovel</h3>
           </div>
+          <hr>
          <div class="box-body pad">
          <form enctype="multipart/form-data" action="data.php" method="post">
+         <input type="text" style="display:none;" id="txtIDImovel" name="txtIDImovel" value="<?php echo $Cod ?>" >
                             <div class="form-group">
                                     <label for="exampleFormControlSelect1">Tipo de Negóciação</label>
                                     <select class="form-control" id="ddrNegociacao" name="ddrNegociacao">
@@ -164,11 +110,11 @@ $viewID = $_GET['uID'];
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Preço</label>
-                                    <input type="number" class="form-control" id="txtPreco" name="txtPreco" placeholder="R$123.000,000" value="<?php echo $Valor; ?>">
+                                    <input type="text" class="form-control" id="txtPreco1" name="txtPreco" placeholder="R$123.000,000" value="<?php echo $Valor; ?>,00">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Condominio</label>
-                                    <input type="number" class="form-control" id="txtCondominio" name="txtCondominio" placeholder="R$123.000,000" >
+                                    <input type="text" class="form-control" id="txtCondominio1" name="txtCondominio" placeholder="R$123.000,000" value="<?php echo $Condominio; ?>,00" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Área M²</label>
@@ -292,22 +238,28 @@ $viewID = $_GET['uID'];
                                     <label for="exampleFormControlTextarea1">Descrição</label>
                                     <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="3"><?php echo $Descricao;?></textarea>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="text-align: center;">
                                     <label for="exampleFormControlInput1">Fotos</label><br>
                                     <input type='file' onchange="readURL(this,'blah');" id="img1" name="image[]" style="display:none" />
                                     <input type='file' onchange="readURL(this,'blah1');" id="img2"  name="image[]" style="display:none" />
-                                    <img id="blah" class="imgUp" src="../img/newpic.png" alt="Adicione uma foto" onclick="setFile('img1')" />
-                                    <img id="blah1" class="imgUp" src="../img/newpic.png" alt="Adicione uma foto" onclick="setFile('img2')" />
-                                    <!--<img id="blah2" class="imgUp" src="../img/newpic.png" alt="Adicione uma foto" onclick="setFile()" />
-                                    <img id="blah3" class="imgUp" src="../img/newpic.png" alt="Adicione uma foto" onclick="setFile()" />
-                                    <img id="blah4" class="imgUp" src="../img/newpic.png" alt="Adicione uma foto" onclick="setFile()" />
-                                    <img id="blah5" class="imgUp" src="../img/newpic.png" alt="Adicione uma foto" onclick="setFile()" />
-                                    <img id="blah6" class="imgUp" src="../img/newpic.png" alt="Adicione uma foto" onclick="setFile()" />-->
+                                    <input type='file' onchange="readURL(this,'blah2');" id="img3"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blah3');" id="img4"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blah4');" id="img5"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blah5');" id="img6"  name="image[]" style="display:none" />
+                                   
+                                    <img id="blah" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img1')" />
+                                    <img id="blah1" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img2')" />
+                                    <img id="blah2" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img3')" />
+                                    <img id="blah3" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img4')" />
+                                    <img id="blah4" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img5')" />
+                                    <img id="blah5" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img6')" />
+                                   
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Destaque</label>
                                     <input type="checkbox" name="chkDestaque" id="chkDestaque">
                                 </div>
+                                <hr>
                                 <div class="form-group">
                                     <input type="submit" name="post" value="Salvar" class="btn btn-primary">
                                 </div>
@@ -317,29 +269,12 @@ $viewID = $_GET['uID'];
       </div>
     </section>
 
-  <aside class="control-sidebar control-sidebar-dark">
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-  </aside>
-  <div class="control-sidebar-bg"></div>
-</div>
-
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="plugins/fastclick/fastclick.js"></script>
-<script src="dist/js/app.min.js"></script>
-<script src="dist/js/demo.js"></script>
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-
+  
 
 <!-- page script -->
 <script>
-  
+         $(document).ready(function(){
+            $('#txtPreco1').mask('#.##0,00', {reverse: true});
+            $('#txtCondominio1').mask('#.##0,00', {reverse: true});
+        });
 </script>
-</body>
-</html>

@@ -21,7 +21,8 @@ $result=mysqli_query($db, $sql);
 $sql = "DELETE FROM Imoveis WHERE ImovelID=$id";
 if(mysqli_query($db, $sql))
 {
-	header('location:data.php');
+	$ret = json_encode("Imovel Apagado");
+	echo $ret;
 }
 else
 {

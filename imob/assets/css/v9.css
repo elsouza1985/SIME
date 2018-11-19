@@ -1,5 +1,84 @@
 
+
+.close-modal{
+    top: 2.5px!important;
+    right: 2.5px!important;
+}
+.botaoTelefone{
+  width: 89px;
+  height: 37px;
+  border-radius: 5px;
+  float: left;
+  max-width: 89px;
+}
+  body, 
+  .menu,
+  .sub-menu {
+    padding: 0;
+    margin: 0;
+
+  }
+  .clearfix:after{
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+  .menu,
+  .sub-menu {
+    list-style: none;
+    
+  }
+  .sub-menu {
+    background: #444;
+  }
+  .menu a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .menu li {
+    position: relative;
+  }
+  .menu > li {
+    float: left;
+  }
+  .menu > li:hover {
+    background: #444;
+  }
+  .menu li:hover > .sub-menu {
+    display: block;
+  }
+  
+  .sub-menu {
+    display: none;
+    position: absolute;
+    min-width: 150px;
+  }
+  
+  .sub-menu li:hover {
+    background: #555;
+  }
+  
+  .sub-menu .sub-menu {
+    top: 0;
+    
+  }
   @media screen and (min-width:425px) {
+    .modal{
+      max-width: 389px;
+    }
+  }
+  /* @media screen and (min-width:425px) {
     .imgBrand{
         max-width: 150px;
       }
@@ -14,4 +93,4 @@
   .imgUp{
     max-width:100px;
     max-height: 70px;
-  }
+  } */
