@@ -11,7 +11,7 @@ $viewID = $_GET['uID'];
 
   include('connection.php');
 
-  $sql ="SELECT Imoveis.ImovelID,ImovelDescricao, ImovelCondominio,TipoImovel,ImovelValor,GROUP_CONCAT(Images.Caminho SEPARATOR ';') as 'Fotos',ImovelEndereco,ImovelVagas,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
+  $sql ="SELECT Imoveis.ImovelID,ImovelDescricao, ImovelDestaque, ImovelCondominio,TipoImovel,ImovelValor,GROUP_CONCAT(Images.Caminho SEPARATOR ';') as 'Fotos',ImovelEndereco,ImovelVagas,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
   FROM `Imoveis` 
   inner join Bairro on Imoveis.ImovelBairro = Bairro.BairroID 
   inner join TipoImovel on Imoveis.ImovelTipo = TipoImovel.TipoImovelID 
@@ -37,7 +37,9 @@ $viewID = $_GET['uID'];
       $Valor = $row['ImovelValor'];
       $Condominio = $row['ImovelCondominio'];
       $Negociacao = $row['ImovelNegociacao'];
+      $Destaque = $row['ImovelDestaque'];
     }
+    $Destaque = $Destaque == '1'?"checked":"";
   }
 
 
@@ -257,7 +259,7 @@ $viewID = $_GET['uID'];
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Destaque</label>
-                                    <input type="checkbox" name="chkDestaque" id="chkDestaque">
+                                    <input type="checkbox" name="chkDestaque" id="chkDestaque" <?php echo $Destaque;?>>
                                 </div>
                                 <hr>
                                 <div class="form-group">

@@ -1,6 +1,6 @@
 <?php 
 require_once 'config.php'; 
-    include(HEADER_TEMPLATE);
+    include(HEADER_TEMPLATE_TEST);
    
 
     ?>
@@ -34,11 +34,14 @@ require_once 'config.php';
            </div>';
              
              }
+             if($numRow == 0 || $numRow == 3){
+                $ImoveisPagina .='<div class="row">';
+             }
              if($numRow < 6){
-            $ImoveisPagina .='<div class="col-lg-4 comboVal" data-percentage="'.$row['ImovelValor'].'">
+            $ImoveisPagina .='<div class="col-xl d-flex justify-content-center" align="center" data-percentage="'.$row['ImovelValor'].'">
             <div class="BoxDestaqueTopo boxShadow" >
                 <div class="DisponibilidadeImovelDestaques">
-                  <span>'.$row['ImovelNegociacao'].'</span>    
+                  <h4>'.$row['ImovelNegociacao'].'</h4>    
                 </div>
                 <div class="ModeloConteudoGeral">
                       <div class="ImgFoto">
@@ -61,12 +64,12 @@ require_once 'config.php';
                      
                       <div class="bottomValores normalTextBox">
                           <div class="TerceiraSaidaPreco">
-                              <span><label class="valorM">'.$row['ImovelValor'].'</label></span>            </div>
+                              <h5><label class="valorM">'.$row['ImovelValor'].'</label></h5>            </div>
                               <div class="btoDetalheDestaque"></div>
                           </div>  
                       </div>
                       <p>
-                      <a href="'.BASEURL.'view_data.php?vID='.$row['ImovelID'].'" onclick="removeBackground();" rel="modal:open" class="btn btn-primary btn-lg">
+                      <a href="'.BASEURL.'view_data.1.php?vID='.$row['ImovelID'].'" class="btn btn-primary btn-lg li-modal">
                          <span class="glyphicon glyphicon-print"></span> Detalhes 
                         </a>
                       </p> 
@@ -75,6 +78,10 @@ require_once 'config.php';
               </div>
           </div>';
              }
+             if($numRow == 2 || $numRow == 5){
+                $ImoveisPagina .='</div>';
+             }
+             
              
               $numRow++;
             }
@@ -126,6 +133,24 @@ require_once 'config.php';
         };
     </script>
     <style>
+     
+        /*css novo*/
+        @media only screen and (max-width: 360px) {
+            .col-xl {
+                padding-right: 0px!important;
+                padding-left: 0px!important;
+                }
+            }
+       .boxShadow{
+        border: 4px lightgrey solid;
+        margin-top: 9px;
+        min-width: 350px;
+        max-width: 350px;
+       }
+        .FotoImovel{
+            max-width: 250px;
+            max-height: 220px;
+        }
         /* jssor slider loading skin [i] css */
         .jssorl-009-[i] img {
             animation-name: jssorl-009-spin;
@@ -195,8 +220,8 @@ require_once 'config.php';
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <div class="container marketing">
-      <h1 style="text-align: center;padding: 5px; font-size: x-large;">Imóveis em destaque</h1>
+    <div class="container">
+      <h3 style="text-align: center;padding: 5px; font-size: x-large;">Imóveis em destaque</h1>
       <div class="menu-container" style="float:right">
         <ul class="menu clearfix">
             <li>
@@ -213,10 +238,29 @@ teste
  		</ul> 
       
       <hr>
-    <div class="row" id="imoveisExpositor">
+    <div id="imoveisExpositor">
         <?php echo($ImoveisPagina);?>
       </div>
-  
+      <div id="theModal" class="modal fade text-center">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+  <script>
+    $('.li-modal').on('click', function(e){
+      e.preventDefault();
+      $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
+     // setTimeout(testf, 1000);
+    });
+    function testf(){
+        var tela = $('#theModal').width();
+       // alert(tela);
+        if(tela < 400){
+            $('#jssor_2').css('width','350px');
+        }
+    }
+  </script>
 <script>
    $(document).ready(function(){
       var fieldsval = $('.valorM');
@@ -239,9 +283,6 @@ $wrapper.find('.comboVal').sort(function (a, b) {
 .appendTo( $wrapper );
 }
 
-  function removeBackground(){
-    $('.modal-backdrop').remove();
-  }
 
  
 </script>

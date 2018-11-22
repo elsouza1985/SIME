@@ -59,11 +59,17 @@ $Fotos = explode(';',$Foto);
 ?>
 
 
+<div class="modal-body">
+
+  <div class="panel panel-default">
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" style="margin-top:100px">
+<div class="content" >
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-   
+ 
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+        </div>
+
         <h1 style="font-size: 22px;">
             <?php echo $Imovel.' '.$Negociacao.', '.$Quartos .' quarto(s), ' ?><label class="valorM" id="lblVal1">
                 <?php echo($Valor)?></label><br>
@@ -71,10 +77,10 @@ $Fotos = explode(';',$Foto);
                 <?php echo $Endereco ?></small>
         </h1>
        
-    </section>
+    </div>
 
     <!-- Main content -->
-    <section class="content">
+    <div class="content">
 
         <div class="row">
             <div >
@@ -133,12 +139,12 @@ $Fotos = explode(';',$Foto);
 
             /*#region responsive code begin*/
 
-            var MAX_WIDTH = 450;
+            var MAX_WIDTH = 492;
 
             function ScaleSlider() {
                 var containerElement = jssor_2_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
+                var containerWidth = $('#theModal').width()-20;//containerElement.clientWidth;
+                   
                 if (containerWidth) {
 
                     var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
@@ -159,6 +165,38 @@ $Fotos = explode(';',$Foto);
         });
     </script>
     <style>
+
+        .tamanhoSlider{
+            position: relative;
+            margin: 0px auto;
+            top: 0px;
+            left: 0px;
+            width: 459px;
+            height: 166.041px;
+            overflow: hidden;
+            visibility: visible;
+        }
+           .slidesBr{
+            cursor:default;
+            position:relative;
+            top:0px;
+            left:0px;
+            width:980px;
+            height:380px;
+            overflow:hidden;
+        }
+        @media only screen and (max-width: 400px) {
+            .tamanhoSlider {
+                position: relative;
+                margin: 0px auto;
+                top: 0px;
+                left: 0px;
+                width: 339px;
+                height: 166.041px;
+                overflow: hidden;
+                visibility: visible;
+                }
+            }
         /* jssor slider loading skin spin css */
         .jssorl-009-spin img {
             animation-name: jssorl-009-spin;
@@ -200,12 +238,16 @@ $Fotos = explode(';',$Foto);
         .jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
         .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
     </style>
+    <div class="container">
+            <div class="row" >
+                <div class="col-xs-12">
+
     <div id="jssor_2" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
         <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="<?php echo BASEURL; ?>svg/loading/static-svg/spin.svg" />
         </div>
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+        <div data-u="slides" class="slidesBr">
             <?php echo $ImoveisDestaque; ?>
             
         </div>
@@ -238,10 +280,13 @@ $Fotos = explode(';',$Foto);
             </svg>
         </div>
     </div>
+    </div>
+    </div>
+    </div>
     <!-- #endregion Jssor Slider End -->
             </div>
     </div>
-    <div class="row">
+    <div class="col" aling="center">
 
             <!-- About Me Box -->
             <div >
@@ -318,7 +363,7 @@ $Fotos = explode(';',$Foto);
 </div>
 <!-- /.row -->
 
-</section>
+</div>
 <!-- /.content -->
 </div>
 
@@ -343,21 +388,26 @@ $Fotos = explode(';',$Foto);
 </div>
 
 
-
+</div>
+  </div>
+  <div class="modal-footer">
+    <div class="panel-footer">
+    <button type="button" class="close" data-dismiss="modal">Sair</button>
+      <div class="col-xs-10" id="lblstatus"></div>
+    </div>
+  </div>
+</div>
 
 
 <script>
-    $(document).ready(function () {
+    $(document).load(function () {
 
         var formatText = $('#lblVal1').text();
-        $('#lblVal1').text(formatValor(formatText));
-        formatText = $('#lblVal2').text();
-        $('#lblVal2').text(formatValor(formatText));
-        $('.modal-backdrop').remove();
+         $('#lblVal1').text(formatValor(formatText));
+         formatText = $('#lblVal2').text();
+         $('#lblVal2').text(formatValor(formatText));
+        
     });
-
+   
 
 </script>
-</body>
-
-</html>

@@ -24,5 +24,6 @@ if ( !defined('BASEURL') )
 $db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 define('HEADER_TEMPLATE', ABSPATH . 'inc/header.php');
+define('HEADER_TEMPLATE_TEST', ABSPATH . 'inc/header.1.php');
 define('HEADERADM_TEMPLATE', ABSPATH . 'inc/headeradm.php');
 define('FOOTER_TEMPLATE', ABSPATH . 'inc/footer.php');
