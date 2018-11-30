@@ -108,108 +108,22 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
   }
  
  
-    include(HEADERADM_TEMPLATE);
+    include(HEADER_TEMPLATE_TEST);
 ?>
+<!--css e datatables -->
 
-                <div class="row">
-                    <div class="col-xs-12">
-
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title"> &nbsp; </h3>
-                            </div>
-
-                            <div class="box-body">
-                            <a href="#ex1" rel="modal:open" class="btn btn-primary">
-                                    Novo Imovél
-                            </a>
-                            </div>
-
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table id="example1" class="table table-bordered table-striped ">
-
-                                    <thead>
-                                        <tr>
-                                            <th class="all">Cod</th>
-                                            <th class="all">Negócio</th>
-                                            <th class="all">Imovel</th>
-                                            <th class="none">Bairro</th>
-                                            <th class="none">Preço</th>
-                                            <th class="all">Ações</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        <?php
-	                include("connection.php");
-
-                  $sql = "SELECT ImovelID, TipoImovel,ImovelValor,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
-                  FROM `Imoveis` 
-                  inner join Bairro on Imoveis.ImovelBairro = Bairro.BairroID 
-                  inner join TipoImovel on Imoveis.ImovelTipo = TipoImovel.TipoImovelID";
-	                $result=mysqli_query($db, $sql); //rs.open sql,con
-
-	              while ($row=mysqli_fetch_array($result))
-	              { ?>
-                                        <!--open of while -->
-
-
-                                        <tr>
-                                            <td>
-                                                <?php echo $row['ImovelID']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['ImovelNegociacao']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['TipoImovel']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['Bairro']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo 'R$' . number_format( $row['ImovelValor'], 2, ',', '.'); ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?php echo BASEURL; ?>view_data.php?vID=<?php echo $row['ImovelID']; ?>" rel="modal:open"  class="btn btn-default btn-sm"
-                                                    data-toggle="tooltip" title="Detalhes"><i class="fa fa-search"></i></a>
-                                                <a href="edit_data.php?uID=<?php echo $row['ImovelID']; ?>" rel="modal:open"  class="btn btn-default btn-sm"
-                                                    data-toggle="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" onclick="confirmDelete('<?php echo $row['ImovelID'];?>', 'true')" class="btn btn-default btn-sm"
-                                                    data-toggle="tooltip" title="Apagar"><i class="fa fa-times"></i></a>
-                                            </td>
-                                        </tr>
-
-                                        <?php
-	                 } //close of while
-	             ?>
-
-                                    </tbody>
-
-                                    <tfoot>
-                                        <tr>
-                                            <th class="all">Cod</th>
-                                            <th class="all">Negócio</th>
-                                            <th class="all">Imovel</th>
-                                            <th class="none">Bairro</th>
-                                            <th class="none">Preço</th>
-                                            <th class="all">Ações</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Modal -->
-        <div id="ex1" class="modal">
-           
-                            <form enctype="multipart/form-data" action="data.php" method="post">
+    <div class="container">
+      <h3 style="text-align: center;padding: 5px; font-size: x-large;">Lista de Imoveis</h1>
+            <div class="col-xl d-flex justify-content-center">
+                <a href="#" class="btn btn-primary li-modal1">Novo Imovél</a>
+            </div>
+            <!-- Tabela de imoveis -->
+            <!-- Modal -->
+</div>
+        <div id="ex1" class="modal fade text-center">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <form enctype="multipart/form-data" action="data.php" method="post">
                             <div class="form-group">
                                 <h2>Cadastro imovel</h2>
                                 <hr>
@@ -251,7 +165,7 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Condominio</label>
-                                    <input type="number" class="form-control" id="txtCondominio" name="txtCondominio" placeholder="R$123.000,000">
+                                    <input type="text" class="form-control" id="txtCondominio" name="txtCondominio" placeholder="R$123.000,000">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Área M²</label>
@@ -319,24 +233,49 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
                                     <input type="submit" name="post" value="Salvar" class="btn btn-primary">
                                 </div>
                             </form>
-                       
-        </div>
+                    </div>
+                </div>
+            </div> 
+               
         <!-- end Modal -->
-
+      </div>
+    </div>           
+                            
+        
+            <!-- <div id="modalPages" class="modal fade text-center">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </div> -->
+                            
        
-    </div>
 
+</div>
    
     <!-- page script -->
     <script>
         $(document).ready(function(){
             $('#txtPreco').mask('#.##0,00', {reverse: true});
             $('#txtCondominio').mask('#.##0,00', {reverse: true});
+            reloadClick();
+            $('.li-modal1').on('click', function(e){
+                    e.preventDefault();
+                    $('#ex1').modal('show');
+                    // setTimeout(testf, 1000);
+                });
         });
+        function reloadClick(){
+            $('.li-modal').on('click', function(e){
+                    e.preventDefault();
+                    $('#modalPages').modal('show').find('.modal-content').load($(this).attr('href'));
+                    // setTimeout(testf, 1000);
+                });
+        }
         $(function () {
 
           
-            $('#example1').DataTable({
+            $('#tblImoveis').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,

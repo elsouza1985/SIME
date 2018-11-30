@@ -1,36 +1,62 @@
-<!DOCTYPE html>
-<html>
+<table id="tblImoveis" class="table table-bordered table-striped ">
+  <thead>
+    <tr>
+      <th class="all">Cod</th>
+      <th class="all">Negócio</th>
+      <th class="all">Imovel</th>
+      <th class="none">Bairro</th>
+      <th class="none">Preço</th>
+      <th class="all">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+        include("connection.php");
 
-<head>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
-</head>
+        $sql = "SELECT ImovelID, TipoImovel,ImovelValor,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
+        FROM `Imoveis` 
+        inner join Bairro on Imoveis.ImovelBairro = Bairro.BairroID 
+        inner join TipoImovel on Imoveis.ImovelTipo = TipoImovel.TipoImovelID";
+        $result=mysqli_query($db, $sql); //rs.open sql,con
 
-<body>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-
-  <ul class="nav navbar-nav" id="menu">
-    <li><a href="/emplookup.html">Lookup</a>
-    </li>
-    <li><a href="/modalexample.html">Modals</a>
-    </li>
-    <li><a href="view_data.1.php?vID=90" class='li-modal'>Lab 6</a>
-    </li>
-  </ul>
-  <div id="theModal" class="modal fade text-center">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-  <script>
-    $('.li-modal').on('click', function(e){
-      e.preventDefault();
-      $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
-    });
-  </script>
-</body>
-
-</html>
+        while ($row=mysqli_fetch_array($result))
+        { ?>
+    <!--open of while -->
+          <tr>
+            <td>
+              <?php echo $row['ImovelID']; ?>
+            </td>
+            <td>
+              <?php echo $row['ImovelNegociacao']; ?>
+            </td>
+            <td>
+              <?php echo $row['TipoImovel']; ?>
+            </td>
+            <td>
+              <?php echo $row['Bairro']; ?>
+            </td>
+            <td>
+              <?php echo 'R$' . number_format( $row['ImovelValor'], 2, ',', '.'); ?>
+            </td>
+            <td>
+              <a href="<?php echo BASEURL; ?>view_data.php?vID=<?php echo $row['ImovelID']; ?>" class="btn btn-default btn-sm li-modal"
+                data-toggle="tooltip" title="Detalhes"><i class="fa fa-search"></i></a>
+              <a href="edit_data.php?uID=<?php echo $row['ImovelID']; ?>" class="btn btn-default btn-sm li-modal" data-toggle="tooltip"
+                title="Editar"><i class="fa fa-pencil"></i></a>
+              <a href="#" onclick="confirmDelete('<?php echo $row['ImovelID'];?>', 'true')" class="btn btn-default btn-sm"
+                data-toggle="tooltip" title="Apagar"><i class="fa fa-times"></i></a>
+            </td>
+          </tr>
+  <?php } ?>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th class="all">Cod</th>
+      <th class="all">Negócio</th>
+      <th class="all">Imovel</th>
+      <th class="none">Bairro</th>
+      <th class="none">Preço</th>
+      <th class="all">Ações</th>
+    </tr>
+  </tfoot>
+</table>

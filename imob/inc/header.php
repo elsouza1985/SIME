@@ -10,17 +10,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<?php echo BASEURL; ?>favicon.ico">
-
+ 
     <title>Jaqueline imovéis</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo BASEURL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <!-- Custom styles for this template -->
     <link href="<?php echo BASEURL; ?>assets/css/carousel.css" rel="stylesheet">
      <link href="<?php echo BASEURL; ?>assets/css/v9.css" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
 
 
        <!-- Bootstrap core JavaScript
@@ -36,12 +36,11 @@
     <script src="<?php echo BASEURL; ?>assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="<?php echo BASEURL; ?>assets/js/vendor/jquery.mask.min.js"></script>
     <script src="<?php echo BASEURL; ?>assets/js/principal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    
   </head>
   <body>
 
-    <nav id="menu" class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse" style="background-color:#5c666b!important">
+    <nav id="menu" class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse" style="background-color:#283e4a!important">
       <button id="btnMenu" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -161,7 +160,10 @@
         	var dados = data.data
         	var imoveis = "";
         	 for (i = 0; i < dados.length; i++) {
-        		 imoveis += '<div class="col-xs-4">'+
+            if(i == 0 ){
+                $imoveis +='<div class="row">';
+             }
+        		 imoveis += '<div class="col-xl d-flex justify-content-center" align="center" data-percentage="'+dados[i].ImovelValor+'">'+
             '<div class="BoxDestaqueTopo boxShadow" >'+
                 '<div class="DisponibilidadeImovelDestaques">'+
                   '<span>'+dados[i].ImovelNegociacao+'</span>'+
@@ -189,13 +191,16 @@
                           '</div>  '+
                       '</div>'+
                       '<p>'+
-                        '<a href="view_data.php?vID='+dados[i].ImovelID+'" rel="modal:open" class="btn btn-primary btn-lg">'+
+                        '<a href="view_data.php?vID='+dados[i].ImovelID+'"  class="btn btn-primary btn-lg li-modal">'+
                           '<span class="glyphicon glyphicon-print"></span> Detalhes '+
                         '</a>'+
                       '</p> '+
                       '</div>'+
                     '</div>'+
           '</div>';
+          if(i+1 == dados.length;){
+            $imoveis +='</div>';
+          }
         	 }
            $('#imoveisExpositor').empty();
            $('#imoveisExpositor').append(imoveis);
@@ -255,7 +260,8 @@
   <p><label>Usuário:</label><input type="text" name="username" id="txtUser"></p>
   <p><label>Senha:</label><input type="password" name="password" id="txtPass"></p>
   <p><input type="submit"  value="Login"></p>
-<a href="#close-modal" rel="modal:close" class="close-modal " id="loginClose">Close</a></form>
+<a href="#close-modal" rel="modal:close" class="close-modal " id="loginClose">Close</a>
+</form>
 <div id="maincontainer">
 
  

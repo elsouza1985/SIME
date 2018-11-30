@@ -10,7 +10,7 @@ mysqli_select_db($db, DB_NAME) or
 
   $sql ="SELECT Imoveis.ImovelID,ImovelDescricao, TipoImovel,ImovelValor,
   GROUP_CONCAT(Images.Caminho SEPARATOR ';') as 'Fotos',ImovelEndereco,
-  ImovelVagas,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, 
+  ImovelVagas,ImovelNegociacao,ImovelCondominio, ImovelArea,ImovelQuartos, ImovelBanheiros, 
   Bairro.BairroNome as 'Bairro', Corretores.CorretorNome as Corretor,  
   Corretores.CorretorEmail as Email, Corretores.CorretorTelefone as Telefone,
   Corretores.CorretorCRECI as CRECI
@@ -34,6 +34,7 @@ mysqli_select_db($db, DB_NAME) or
       $Banheiros = $row['ImovelBanheiros'];
       $Descricao = $row['ImovelDescricao'];
       $Endereco = $row['ImovelEndereco'];
+      $Condominio = isset($row['ImovelCondominio'])?$row['ImovelCondominio']:"0";
       $Foto = $row['Fotos'];
       $Quartos = $row['ImovelQuartos'];
       $Vagas = $row['ImovelVagas'];
@@ -59,11 +60,17 @@ $Fotos = explode(';',$Foto);
 ?>
 
 
+<div class="modal-body">
+
+  <div class="panel panel-default">
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" style="margin-top:100px">
+<div class="content" >
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-   
+ 
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+        </div>
+
         <h1 style="font-size: 22px;">
             <?php echo $Imovel.' '.$Negociacao.', '.$Quartos .' quarto(s), ' ?><label class="valorM" id="lblVal1">
                 <?php echo($Valor)?></label><br>
@@ -71,10 +78,10 @@ $Fotos = explode(';',$Foto);
                 <?php echo $Endereco ?></small>
         </h1>
        
-    </section>
+    </div>
 
     <!-- Main content -->
-    <section class="content">
+    <div class="content">
 
         <div class="row">
             <div >
@@ -133,12 +140,12 @@ $Fotos = explode(';',$Foto);
 
             /*#region responsive code begin*/
 
-            var MAX_WIDTH = 450;
+            var MAX_WIDTH = 492;
 
             function ScaleSlider() {
                 var containerElement = jssor_2_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
+                var containerWidth = $('#theModal').width()-20;//containerElement.clientWidth;
+                   
                 if (containerWidth) {
 
                     var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
@@ -155,10 +162,51 @@ $Fotos = explode(';',$Foto);
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
+            var formatText = $('#lblVal1').text();
+            $('#lblVal1').text(formatValor(formatText));
+            formatText = $('#lblVal2').text();
+            $('#lblVal2').text(formatValor(formatText));
+            formatText = $('#lblVal3').text();
+            $('#lblVal3').text(formatValor(formatText));
             /*#endregion responsive code end*/
         });
     </script>
     <style>
+        .btnClass{
+            min-width: 90px;
+            margin: 6px;
+        }
+        .tamanhoSlider{
+            position: relative;
+            margin: 0px auto;
+            top: 0px;
+            left: 0px;
+            width: 459px;
+            height: 166.041px;
+            overflow: hidden;
+            visibility: visible;
+        }
+           .slidesBr{
+            cursor:default;
+            position:relative;
+            top:0px;
+            left:0px;
+            width:980px;
+            height:380px;
+            overflow:hidden;
+        }
+        @media only screen and (max-width: 400px) {
+            .tamanhoSlider {
+                position: relative;
+                margin: 0px auto;
+                top: 0px;
+                left: 0px;
+                width: 339px;
+                height: 166.041px;
+                overflow: hidden;
+                visibility: visible;
+                }
+            }
         /* jssor slider loading skin spin css */
         .jssorl-009-spin img {
             animation-name: jssorl-009-spin;
@@ -200,12 +248,16 @@ $Fotos = explode(';',$Foto);
         .jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
         .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
     </style>
+    <div class="container">
+            <div class="row" >
+                <div class="col-xs-12">
+
     <div id="jssor_2" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
         <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="<?php echo BASEURL; ?>svg/loading/static-svg/spin.svg" />
         </div>
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+        <div data-u="slides" class="slidesBr">
             <?php echo $ImoveisDestaque; ?>
             
         </div>
@@ -238,10 +290,13 @@ $Fotos = explode(';',$Foto);
             </svg>
         </div>
     </div>
+    </div>
+    </div>
+    </div>
     <!-- #endregion Jssor Slider End -->
             </div>
     </div>
-    <div class="row">
+    <div class="col" aling="center">
 
             <!-- About Me Box -->
             <div >
@@ -255,6 +310,14 @@ $Fotos = explode(';',$Foto);
                         <label class="valorM" id="lblVal2">
                             <?php echo($Valor)?></label>
                     </p>
+                    <?php if($Condominio!="0"){
+                         echo('<strong><i class="fa fa-usd" aria-hidden="true"></i> Condominio</strong>
+                          <p > 
+                              <label class="valorM" id="lblVal3">
+                              '.$Condominio.'
+                              </label>
+                          </p> ');   
+                    }?>
                     <hr>
                     <strong><i class="fa fa-home" aria-hidden="true"></i> Tipo de imóvel</strong>
                     <p >
@@ -296,16 +359,16 @@ $Fotos = explode(';',$Foto);
                         E-mail: <?php echo $Email; ?>
                     </p>
                     <hr>
-                    <div style="    position: relative;  margin-left: 90px;">
-                        <div class="btn btn-warning botaoTelefone">
+                    <div class="d-flex justify-content-center">
+                        <div class="btn btn-warning botaoTelefone btnClass">
                             <a href="tel:<?php echo $Telefone; ?>" ><i class="fa fa-phone"></i> </a>
                         </div>
-                        <div class="btn btn-success botaoTelefone">
-                            <a class="icon" href="https://api.whatsapp.com/send?phone=55<?php echo $Telefone; ?>" ><i class="fa fa-whatsapp"></i> </a>
+                        <div class="btn btn-success botaoTelefone btnClass">
+                            <a class="icon" href="https://api.whatsapp.com/send?phone=55<?php echo $Telefone; ?>" ><img style="    width: 23px;" src="img/icons/wapp.png"></i></a>
                         </div>
                         
-                        <div class="btn btn-info botaoTelefone">
-                            <a href="mailto:<?php echo $Email; ?>" ><i class="fa fa-envelope-o"></i> </a>
+                        <div class="btn btn-info botaoTelefone btnClass">
+                            <a href="mailto:<?php echo $Email; ?>" ><i class="fa fa-envelope"></i> </a>
                         </div>
                     </div>
                    
@@ -318,46 +381,31 @@ $Fotos = explode(';',$Foto);
 </div>
 <!-- /.row -->
 
-</section>
+</div>
 <!-- /.content -->
 </div>
 
 
-<!-- end Modal -->
-<!-- <section class="displayContato boxContato">
-    <div class="displayLinha"><a href="#" class="botaoContato">Entrar em
-            contato</a>
-        <form method="post" class="js-form-action-phone" target="_top" >
-            <fieldset> 
-                <input type="hidden" name="urlFrom" value="">
-                <input type="hidden" name="accountId" value="58397"> <input type="hidden" name="city" value="São Paulo">
-                <input type="hidden" name="form" value=""> <input type="hidden" name="leadType" value="PHONE">
-                <input type="hidden" name="listingId" value="1039776304"> <input type="hidden" name="contactMode" value=".. Gostaria de receber o contato por E-mail.">
-                <input type="hidden" name="device" value="{&quot;type&quot;:&quot;mobile&quot;,&quot;model&quot;:&quot;unknown&quot;,&quot;platform&quot;:&quot;unknown&quot;}">
-            </fieldset>
-            
-        </form>
-    </div>
-</section> -->
-
 </div>
 
 
-
+</div>
+  </div>
+  <div class="modal-footer">
+    <div class="panel-footer">
+    <button type="button" class="close" data-dismiss="modal">Sair</button>
+      <div class="col-xs-10" id="lblstatus"></div>
+    </div>
+  </div>
+</div>
 
 
 <script>
-    $(document).ready(function () {
+    $(document).load(function () {
 
-        var formatText = $('#lblVal1').text();
-        $('#lblVal1').text(formatValor(formatText));
-        formatText = $('#lblVal2').text();
-        $('#lblVal2').text(formatValor(formatText));
-        $('.modal-backdrop').remove();
+     
+        
     });
-
+   
 
 </script>
-</body>
-
-</html>

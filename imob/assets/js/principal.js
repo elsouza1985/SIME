@@ -1,6 +1,15 @@
 
 function formatValor(valor){
-    var ret = valor.replace(/\s/g, '');
+  
+    if(valor.indexOf("R$") != -1||valor.indexOf("Sob") != -1){
+        return valor;
+    }
+    ret = valor.replace(/\s/g, '');
+    var valorn = parseInt(valor);
+   
+    if(valorn == 0){
+        return "Sob consulta";
+    }
     ret = ret.split('');
     var ret1 ="R$";
     var m = 0;
@@ -68,10 +77,10 @@ function formatValor(valor){
             if(i <1){
             ret1 += ret[i];
             }
-            if(i == 1){
+            if(i == 2){
                 ret1 += '.';
             }
-            if(i >= 1 && i<4 ){
+            if(i >= 1 && i<=4 ){
                 ret1 += ret[i];
             }
         }
@@ -85,7 +94,7 @@ function formatValor(valor){
             if(i == 1){
                 ret1 += '.';
             }
-            if(i >= 1 && i<4 ){
+            if(i >= 1 && i<=4 ){
                 ret1 += ret[i];
             }
         }
