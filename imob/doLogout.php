@@ -7,7 +7,7 @@ if(isset($_GET['token']) && $_GET['token'] === $token) {
    // Eu geralmente não destruo a seção, mas invalido os dados da mesma
    // para evitar algum "necromancer" recuperar dados. Mas simplifiquemos:
    session_destroy();
-   header("location:".BASEURL."index.php");
+   header("location:index.php");
    exit();
 } else {
    echo '<a href="doLogout.php?token='.$token.'>Confirmar logout</a>';

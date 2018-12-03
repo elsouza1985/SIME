@@ -16,7 +16,7 @@ include_once(ABSPATH.'Admin/connection.php');
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
     crossorigin="anonymous">
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
    <script src="<?php echo BASEURL; ?>assets/js/vendor/jquery.mask.min.js"></script>
@@ -24,6 +24,8 @@ include_once(ABSPATH.'Admin/connection.php');
 
   <title>Jaqueline imovéis</title>
   <style>
+    
+
     .logo{
     max-width: 100px;
   }
@@ -31,7 +33,9 @@ include_once(ABSPATH.'Admin/connection.php');
   overflow: hidden;
   background-color: #283e4a;
 }
-
+p,label,h1, div{
+  font-family: 'Roboto', sans-serif;
+}
 .topnav a {
   float: left;
   display: block;
@@ -41,12 +45,17 @@ include_once(ABSPATH.'Admin/connection.php');
   text-decoration: none;
   font-size: 17px;
 }
-
+.topnav a:hover {
+  background-color: #ddd;;
+  color: black;
+}
 .active {
   background-color: #4CAF50;
   color: white;
 }
-
+.topnav a:first-child(2) {
+    padding-left: 15%;
+  }
 .topnav .icon {
   display: none;
 }
@@ -112,9 +121,17 @@ include_once(ABSPATH.'Admin/connection.php');
     margin-left: 29px;
     margin-top: -10px;
 }
+.topnav a:nth-last-child(2){
+     float: right;
+    margin-right: 80px;
+  }
+  .topnav div:nth-last-child(2){
+   float:right; 
+   margin-right: 80px;
+  }
 
 @media screen and (max-width: 600px) {
-  .topnav div:not(:first-child), .dropdown .dropbtn {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
     display: none; 
   }
   .hclass{
@@ -125,6 +142,9 @@ include_once(ABSPATH.'Admin/connection.php');
     display: block;
   }
 }
+.adjustCenter{
+      padding-left: 15%!important;
+    }
 
 @media screen and (max-width: 600px) {
     .siteTitle{
@@ -132,6 +152,9 @@ include_once(ABSPATH.'Admin/connection.php');
         margin-left: 38px;
         position: absolute;
         margin-top: -18px;
+    }
+    .adjustCenter{
+      padding-left: 0;;
     }
     .rowBusca{
       padding-top: 20px;
@@ -143,7 +166,7 @@ include_once(ABSPATH.'Admin/connection.php');
     right: 0;
     top: 0;
   }
-  .topnav.responsive div {
+  .topnav.responsive a {
     float: none;
     display: block;
     text-align: left;
@@ -166,10 +189,14 @@ include_once(ABSPATH.'Admin/connection.php');
     <a class="" href="<?php echo BASEURL; ?>index.php">
       <img src="<?php echo BASEURL; ?>assets/img/logo_imob.png" class="logo" />
      Jaqueline Oliveira
+     <p style="position: absolute;
+    left: 123px;
+    font-size: 13px;
+    font-weight: bold;
+    top: 32px;">CRECI:177610</p>
 
     </a>
-    <a href="#home" class="active" >Home</a>
-    <a href="?vIm=1">Venda</a>
+    <a href="?vIm=1" class="adjustCenter">Venda</a>
     <a href="?vIm=2">Locação</a>
     <a href="sobre.php">Sobre</a>
     <a href="contato.php">Contato</a>
@@ -186,13 +213,10 @@ include_once(ABSPATH.'Admin/connection.php');
         </button>
         <div class="dropdown-content">
           <a href="<?php echo BASEURL; ?>Admin/data.php">Administrar</a>
-          <a href="<?php echo BASEURL; ?>Admin/perfil.php" >Perfil</a>
-          <?php echo '<a href="doLogout.php?token='.md5(session_id()).'">Sair</a>';?>
+          <a href="<?php echo BASEURL; ?>Admin/perfil.php" class="li-modal" >Perfil</a>
+          <?php echo '<a href="'.BASEURL.'doLogout.php?token='.md5(session_id()).'">Sair</a>';?>
         </div>
       </div>
-       
-    
-
       <?php } ?>
 
 
@@ -213,74 +237,7 @@ include_once(ABSPATH.'Admin/connection.php');
 
 
     <script>
-      function getImoveis() {
-        var url = window.location.origin + "<?php echo BASEURL; ?>";
-        var campos = {
-          "Tipo": $('#Tipo option:selected').val(),
-          "Finalidade": $('#Finalidade option:selected').val(),
-          "Bairro": $('#Bairro option:selected').val(),
-          "CodImovel": $('#CodImovel').val()
-        };
-        $.ajax({
-          dataType: 'json',
-          url: url + '/Admin/dados.php',
-          type: 'post',
-          data: { action: 'custom_select', Fields: campos },
-          success: function (data) {
-            console.log(data);
-            var dados = data.data
-            var imoveis = "";
-            for (i = 0; i < dados.length; i++) {
-              imoveis += '<div class="col-lg-4">' +
-                '<div class="BoxDestaqueTopo boxShadow" >' +
-                '<div class="DisponibilidadeImovelDestaques">' +
-                '<span>' + dados[i].ImovelNegociacao + '</span>' +
-                '</div>' +
-                '<div class="ModeloConteudoGeral">' +
-                '<div class="ImgFoto">' +
-                '<div class="ModeloFoto">' +
-                '<img src="Admin/uploads/' + dados[i].Fotos + '" class="FotoImovel" alt="">' +
-                '</div>' +
-                '</div>' +
-                '<div class="ModeloContainerInner">' +
-                '<div class="ModeloConteudoDescricao normalTextBox">' +
-                '<div class="ModeloRef">Cód:' + dados[i].ImovelID + '</div>' +
-                '<div class="ModeloTipoImovel">' + dados[i].TipoImovel + '</div>' +
-                '<div class="ModeloBairroImovel" title="' + dados[i].Bairro + '">' + dados[i].Bairro + ' </div>' +
-                '<div class="ModeloComposicaoImovel">' +
-                '<div><span class="QtdeDepedencias">' + dados[i].ImovelQuartos + '</span> dorms. </div> ' +
-                '<div class="SegundaSaidaObservacao">' + returnString(dados[i].ImovelDescricao) + '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="bottomValores normalTextBox">' +
-                '<div class="TerceiraSaidaPreco">' +
-                '<span><label class="valorM">' + dados[i].ImovelValor + '</label></span>            </div>' +
-                '<div class="btoDetalheDestaque"></div>' +
-                '</div>  ' +
-                '</div>' +
-                '<p>' +
-                '<a href="view_data.php?vID=' + dados[i].ImovelID + '" rel="modal:open" class="btn btn-primary btn-lg">' +
-                '<span class="glyphicon glyphicon-print"></span> Detalhes ' +
-                '</a>' +
-                '</p> ' +
-                '</div>' +
-                '</div>' +
-                '</div>';
-            }
-            $('#imoveisExpositor').empty();
-            $('#imoveisExpositor').append(imoveis);
-            var fieldsval = $('.valorM');
-            for (var i = 0; i < fieldsval.length; i++) {
-              var textVal = $(fieldsval[i]).text();
-              $(fieldsval[i]).text(formatValor(textVal));
-
-            }
-
-          }
-
-
-        });
-      }
+      
       function returnString(str) {
 
         if (str.length > 120) {

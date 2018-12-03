@@ -36,11 +36,14 @@ $Usuario = $_SESSION ['username'];
 } catch(Exception $e){}
     ?>
 
-        
+           <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">X</button>
+                                    </div>
             <section class="content" style="margin-top:50px;">
+            
                 <div class="col-md-12">
                     <div class="box">
-                        
+                 
                         <div class="box-body pad">
                             <form enctype="multipart/form-data" action="Admin/edit_p.php" method="post">
                             <div class="form-group" style="display:none">
@@ -49,7 +52,9 @@ $Usuario = $_SESSION ['username'];
                                     <input type="hidden" name="txtNewUser" value="<?php echo($NewUser);?>" >
                                 </div>
                                 <div class="box-header">
+                                    
                                      <h3 class="box-title">Dados do Corretor:</h3>
+                                     
                                      <hr>
                                 </div>
                                 <div class="form-group">

@@ -1,4 +1,5 @@
 
+
 function formatValor(valor){
   
     if(valor.indexOf("R$") != -1||valor.indexOf("Sob") != -1){

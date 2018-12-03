@@ -11,7 +11,13 @@ $viewID = $_GET['uID'];
 
   include('connection.php');
 
-  $sql ="SELECT Imoveis.ImovelID,ImovelDescricao, ImovelDestaque, ImovelCondominio,TipoImovel,ImovelValor,GROUP_CONCAT(Images.Caminho SEPARATOR ';') as 'Fotos',ImovelEndereco,ImovelVagas,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
+
+  $sql ="SELECT Imoveis.ImovelID,ImovelDescricao, ImovelDestaque, 
+  ImovelCondominio,TipoImovel,ImovelValor,
+  GROUP_CONCAT(Images.Caminho SEPARATOR ';') as 'Fotos',
+  GROUP_CONCAT(Images.IDImagem SEPARATOR ';') as 'FotosID',
+  ImovelEndereco,ImovelVagas,ImovelNegociacao, ImovelArea,
+  ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
   FROM `Imoveis` 
   inner join Bairro on Imoveis.ImovelBairro = Bairro.BairroID 
   inner join TipoImovel on Imoveis.ImovelTipo = TipoImovel.TipoImovelID 
@@ -32,6 +38,7 @@ $viewID = $_GET['uID'];
       $Descricao = $row['ImovelDescricao'];
       $Endereco = $row['ImovelEndereco'];
       $Foto = $row['Fotos'];
+      $FotoID = $row['FotosID'];
       $Quartos = $row['ImovelQuartos'];
       $Vagas = $row['ImovelVagas'];
       $Valor = $row['ImovelValor'];
@@ -47,20 +54,40 @@ $viewID = $_GET['uID'];
 ?>
 
 
-    
+    <style>
+        .imgUp{
+            max-width: 197px;
+            min-width: 197px;
+            height: 115px;
+            padding: 5px;
+        }
+        .formFJus{
+            padding-top: 10px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        label{
+            font-weight:bold;
+            padding-left:9px;
+            color:#191A28;
+        }
+        </style>
 
     <section class="content">
       <div class="col-md-12">
         <div class="box">
-          <div class="box-header">
-              <h3 class="box-title">Editar Imovel</h3>
-          </div>
-          <hr>
+          <div class="modal-header">
+          <p class="h3 modal-title">Editar Anúncio</p>
+            <button type="button" class="close" data-dismiss="modal">X</button>
+        </div>
+     
          <div class="box-body pad">
-         <form enctype="multipart/form-data" action="data.php" method="post">
+         <form enctype="multipart/form-data" action="data.php" method="post" style="background-color:#758A9D;">
          <input type="text" style="display:none;" id="txtIDImovel" name="txtIDImovel" value="<?php echo $Cod ?>" >
-                            <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Tipo de Negóciação</label>
+         <input type="text" style="display:none;" id="txtFotoRemovidaID" name="txtFotoRemovidaID" value="" >
+         <input type="text" style="display:none;" id="txtFotoRemovidaNome" name="txtFotoRemovidaNome" value="" >
+                            <div class="form-group formFJus">
+                                    <label for="exampleFormControlSelect1">Tipo de Negociação</label>
                                     <select class="form-control" id="ddrNegociacao" name="ddrNegociacao">
                                         <?php if($Negociacao == "Venda"){ ?>
                                         <option value="Venda" selected="selected">Venda</option>
@@ -71,7 +98,7 @@ $viewID = $_GET['uID'];
                                         <?php }?>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlSelect1">Tipo de Imóvel</label>
                                     <select class="form-control" id="ddrImovel" name="ddrImovel">
                                     <?php if($Imovel == "Casa"){ ?>   
@@ -89,7 +116,7 @@ $viewID = $_GET['uID'];
                                         <?php }?>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlSelect1">Bairro</label>
                                     <select class="form-control" id="ddrBairro" name="ddrBairro">
                                     <option value="0">Selecione</option>
@@ -106,50 +133,62 @@ $viewID = $_GET['uID'];
                                     <?php }} ?>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlInput1">Endereço</label>
                                     <input type="text" class="form-control" id="txtEndereco" name="txtEndereco" placeholder="Rua e número" value="<?php echo $Endereco;?>">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlInput1">Preço</label>
                                     <input type="text" class="form-control" id="txtPreco1" name="txtPreco" placeholder="R$123.000,000" value="<?php echo $Valor; ?>,00">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlInput1">Condominio</label>
                                     <input type="text" class="form-control" id="txtCondominio1" name="txtCondominio" placeholder="R$123.000,000" value="<?php echo $Condominio; ?>,00" >
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlInput1">Área M²</label>
                                     <input type="number" class="form-control" id="txtArea" name="txtArea" placeholder="100" value="<?php echo $Area; ?>">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlSelect1">Quartos</label>
                                     <select class="form-control" id="ddrQuartos" name="ddrQuartos">
-                                    <?php if($Quartos == "1"){ ?>      
-                                      <option value="1" selected="selected">1</option>
+                                    <?php if($Quartos == "0"){ ?>    
+                                        <option value="0" selected="selected">0</option>  
+                                        <option value="1" >1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    <?php }if($Quartos == "1"){ ?>    
+                                        <option value="0">0</option>  
+                                        <option value="1" selected="selected">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     <?php }if($Quartos == "2"){ ?>  
+                                        <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2" selected="selected">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Quartos == "3"){ ?>  
+                                            <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2">2</option>
                                         <option value="3" selected="selected">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Quartos == "4"){ ?>  
+                                            <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4" selected="selected">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Quartos == "5"){ ?>  
+                                            <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -158,34 +197,46 @@ $viewID = $_GET['uID'];
                                         <?php }?>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlSelect2">Banheiros</label>
                                     <select class="form-control" id="ddrBanheiros" name="ddrBanheiros">
-                                    <?php if($Banheiros == "1"){ ?>      
-                                      <option value="1" selected="selected">1</option>
+                                    <?php if($Banheiros == "0"){ ?>   
+                                        <option value="0" selected="selected">0</option>   
+                                        <option value="1" >1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    <?php }if($Banheiros == "1"){ ?>   
+                                        <option value="0">0</option>   
+                                        <option value="1" selected="selected">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     <?php }if($Banheiros == "2"){ ?>  
+                                        <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2" selected="selected">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Banheiros == "3"){ ?>  
+                                            <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2">2</option>
                                         <option value="3" selected="selected">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Banheiros == "4"){ ?>  
+                                            <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4" selected="selected">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Banheiros == "5"){ ?>  
+                                            <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -194,41 +245,47 @@ $viewID = $_GET['uID'];
                                         <?php }?>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlSelect2">Vagas</label>
                                     <select class="form-control" id="ddrVagas" name="ddrVagas">
                                     <?php if($Vagas == "0"){ ?>      
                                       <option value="0" selected="selected">0</option>
+                                      <option value="1">0</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     <?php }if($Vagas == "1"){ ?>    
+                                        <option value="0">0</option>
                                       <option value="1" selected="selected">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     <?php }if($Vagas == "2"){ ?>  
+                                        <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2" selected="selected">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Vagas == "3"){ ?>  
+                                            <option value="0">0</option>
                                       <option value="1" >1</option>
                                         <option value="2">2</option>
                                         <option value="3" selected="selected">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Vagas == "4"){ ?>  
-                                        <option value="1">1</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4" selected="selected">4</option>
                                         <option value="5">5</option>
                                         <?php }if($Vagas == "5"){ ?>  
-                                      <option value="1" >1</option>
+                                            <option value="0">0</option>
+                                            <option value="1" >1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -236,36 +293,41 @@ $viewID = $_GET['uID'];
                                         <?php }?>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
                                     <label for="exampleFormControlTextarea1">Descrição</label>
                                     <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="3"><?php echo $Descricao;?></textarea>
                                 </div>
-                                <div class="form-group" style="text-align: center;">
+                                <div class="form-group formFJus" style="text-align: center;">
                                     <label for="exampleFormControlInput1">Fotos</label><br>
-                                    <input type='file' onchange="readURL(this,'blah');" id="img1" name="image[]" style="display:none" />
-                                    <input type='file' onchange="readURL(this,'blah1');" id="img2"  name="image[]" style="display:none" />
-                                    <input type='file' onchange="readURL(this,'blah2');" id="img3"  name="image[]" style="display:none" />
-                                    <input type='file' onchange="readURL(this,'blah3');" id="img4"  name="image[]" style="display:none" />
-                                    <input type='file' onchange="readURL(this,'blah4');" id="img5"  name="image[]" style="display:none" />
-                                    <input type='file' onchange="readURL(this,'blah5');" id="img6"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blahe0');" id="imge1" name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blahe1');" id="imge2"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blahe2');" id="imge3"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blahe3');" id="imge4"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blahe4');" id="imge5"  name="image[]" style="display:none" />
+                                    <input type='file' onchange="readURL(this,'blahe5');" id="imge6"  name="image[]" style="display:none" />
                                    
-                                    <img id="blah" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img1')" />
-                                    <img id="blah1" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img2')" />
-                                    <img id="blah2" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img3')" />
-                                    <img id="blah3" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img4')" />
-                                    <img id="blah4" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img5')" />
-                                    <img id="blah5" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('img6')" />
+                                    <img id="blahe0" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('imge1')" />
+                                    <img id="blahe1" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('imge2')" />
+                                    <img id="blahe2" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('imge3')" />
+                                    <img id="blahe3" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('imge4')" />
+                                    <img id="blahe4" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('imge5')" />
+                                    <img id="blahe5" class="imgUp" src="../assets/img/newpic.png" alt="Adicione uma foto" onclick="setFile('imge6')" />
                                    
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Destaque</label>
-                                    <input type="checkbox" name="chkDestaque" id="chkDestaque" <?php echo $Destaque;?>>
                                 </div>
                                 <hr>
-                                <div class="form-group">
+                                <div class="form-group formFJus">
+                                    
+                                    <input type="checkbox" name="chkDestaque" id="chkDestaque" <?php echo $Destaque;?>>
+                                    <label for="exampleFormControlTextarea1">Colocar o Imóvel em destaque</label>
+                                </div>
+                                                               
+                                <div class="form-group d-flex justify-content-center" style="background-color:white">
+                                    <input type="button" value="Cancelar" class="btn btn-danger" data-dismiss="modal">&nbsp;
                                     <input type="submit" name="post" value="Salvar" class="btn btn-primary">
+                                    
                                 </div>
                             </form>
+                            
           </div>
         </div>
       </div>
@@ -274,9 +336,20 @@ $viewID = $_GET['uID'];
   
 
 <!-- page script -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script>
+
          $(document).ready(function(){
-            $('#txtPreco1').mask('#.##0,00', {reverse: true});
-            $('#txtCondominio1').mask('#.##0,00', {reverse: true});
+           $('#txtPreco1').mask('#.##0,00', {reverse: true});
+           $('#txtCondominio1').mask('#.##0,00', {reverse: true});
+            url = window.location.href;
+            var fotos = '<?php echo $Foto ?>';
+            var fotosID = '<?php echo $FotoID ?>';
+            fotos = fotos.split(';');
+            fotosID = fotosID.split(';');
+            for(i = 0; i < fotos.length; i++){
+                $('#blahe'+i).attr('src','../Admin/uploads/'+fotos[i]);
+                $('#blahe'+i).attr('data-imgID',fotosID[i]);
+            }
         });
 </script>

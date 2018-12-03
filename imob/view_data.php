@@ -71,13 +71,27 @@ $Fotos = explode(';',$Foto);
             <button type="button" class="close" data-dismiss="modal">X</button>
         </div>
 
-        <h1 style="font-size: 22px;">
-            <?php echo $Imovel.' '.$Negociacao.', '.$Quartos .' quarto(s), ' ?><label class="valorM" id="lblVal1">
-                <?php echo($Valor)?></label><br>
-            <small>
-                <?php echo $Endereco ?></small>
-        </h1>
-       
+        <p class="h4 text-center">
+            <?php 
+            if($Negociacao=="Venda"){
+              echo ($Imovel.' à '.$Negociacao);  
+            }else{
+                echo($Imovel.' para '.$Negociacao);
+            } 
+            ?>
+           
+            
+        </p>
+        <p class="h5 text-center">
+            <label class="valorM " id="lblVal1">
+                <?php echo($Valor)?>
+            </label>
+        </p>
+        <p class="text-center">
+            <label>Bairro: <?php echo $Bairro ?></label> <br>
+            
+        </p>
+        <small>Cód. Imovél:<?php echo $Cod ?></small>
     </div>
 
     <!-- Main content -->
@@ -345,20 +359,29 @@ $Fotos = explode(';',$Foto);
                         <?php echo $Descricao; ?>
                     </p>
                     <hr>
+                    <h3 class="profile-username text-center">Localização</h3>
+                    <p >
+                        <?php echo($Endereco.' - '.$Bairro); ?> 
+                    </p>
+                    <hr>
                     <h3 class="profile-username text-center">Corretor</h3>
                     <p >
                         <?php echo $Corretor; ?>
                     </p>
+                   
                     <p >
                         CRECI: <?php echo $Creci; ?>
                     </p>
                     <p >
-                        Telefone: <?php echo $Telefone; ?>
+                        Telefone:<label class="lblTel"> <?php echo $Telefone; ?></label>
                     </p>
                     <p >
                         E-mail: <?php echo $Email; ?>
                     </p>
                     <hr>
+                    <div class="d-flex justify-content-center">
+                    <p class="h5">Fale conosco agora</p>
+                    </div>
                     <div class="d-flex justify-content-center">
                         <div class="btn btn-warning botaoTelefone btnClass">
                             <a href="tel:<?php echo $Telefone; ?>" ><i class="fa fa-phone"></i> </a>
@@ -367,7 +390,7 @@ $Fotos = explode(';',$Foto);
                             <a class="icon" href="https://api.whatsapp.com/send?phone=55<?php echo $Telefone; ?>" ><img style="    width: 23px;" src="img/icons/wapp.png"></i></a>
                         </div>
                         
-                        <div class="btn btn-info botaoTelefone btnClass">
+                        <div class="btn btn-info botaoTelefone btnClass" style="background-color: aliceblue;">
                             <a href="mailto:<?php echo $Email; ?>" ><i class="fa fa-envelope"></i> </a>
                         </div>
                     </div>
@@ -401,9 +424,9 @@ $Fotos = explode(';',$Foto);
 
 
 <script>
-    $(document).load(function () {
+    $(document).ready(function () {
 
-     
+     $('.lblTel').mask('(00) 00000-0000');   
         
     });
    

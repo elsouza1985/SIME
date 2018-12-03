@@ -67,7 +67,7 @@ function getImoveis($TipoImovel, $Negociacao, $Bairro, $CodImovel){
            }
     
 	
-	$data ['data'] = $json;
+	$data ['data'] = isset($json)?$json:"";
    
     echo json_encode ( $data );
     //close_database ( $database );

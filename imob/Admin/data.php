@@ -29,6 +29,8 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
   }
     if(isset($_POST['post'])){
         $idImovel = strip_tags(isset($_POST['txtIDImovel'])?$_POST['txtIDImovel']:""); 
+        $DeleteFotos = strip_tags(isset($_POST['txtFotoRemovidaID'])?$_POST['txtFotoRemovidaID']:""); 
+        $DeleteFotosNome = strip_tags(isset($_POST['txtFotoRemovidaNome'])?$_POST['txtFotoRemovidaNome']:""); 
     	$Imovel = strip_tags($_POST['ddrImovel']);
     	$Endereco = strip_tags($_POST['txtEndereco']);
     	$Preco = strip_tags(str_replace(".","",$_POST['txtPreco']));
@@ -69,30 +71,7 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
             $sql = "INSERT INTO Imoveis VALUES(NULL,'$Imovel' ,'$Preco', '$Condominio','$Bairro', '$Descricao' ,'$Destaque','$Quartos','$Banheiros','$Vagas','$Area','$Endereco','$Negociacao','$Corretor')";
             if (mysqli_query($db, $sql)){
                 $last_id = mysqli_insert_id($db);
-                
-                foreach ($file_ary as $file) {
-                    $name = $file['name'];
-                    $name = explode('.',$name);
-                    $name =rand(1000,33000).'.' .$name[1];
-                    $type = $file["type"];
-                    $size = $file["size"];
-                    $temp = $file["tmp_name"];
-                    $error = $file["error"];
-                    $sql = "INSERT INTO Images VALUES(NULL,'$last_id' ,'$name')";
-                        if ($error > 0) {
-                            die("Upload an image please!");
-                        }else{
-                            if($size > 100000000000){
-                                die("Format is not allowed or file size is too big!");
-                            }else{
-                                if (mysqli_query($db, $sql)){
-                                    move_uploaded_file($temp,"uploads/".$name);
-                                }else{
-                                    die('Unable to insert data:' .mysqli_error());
-                                }
-                            }
-                        }
-                }
+                insertFiles($last_id, $file_ary, $db);
             }
         }else{
             $sql = "UPDATE Imoveis SET 
@@ -102,22 +81,150 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
              ImovelNegociacao = '$Negociacao',ImovelCorretor = '$Corretor', ImovelCondominio ='$Condominio'
              WHERE ImovelID = $idImovel";
                 if (mysqli_query($db, $sql)){
-                    $last_id = mysqli_insert_id($db);
+                    if(isset($file_ary)){
+                    insertFiles($idImovel, $file_ary, $db);
+                    }
+                    if(!isset($DeleteFotos)){
+                        $DeletarArquivos['name'] = $DeleteFotosNome;
+                        $DeletarArquivos['id'] = $DeleteFotos;
+                        deleteFiles($DeletarArquivos,$db);
+                    }
                 }
         }
-  }
+ }
  
+ function insertFiles($last_id, $file_array, $db){
+        
+        foreach ($file_array as $file) {
+            $name = $file['name'];
+            $name = explode('.',$name);
+            $name =rand(1000,33000).'.' .$name[1];
+            $type = $file["type"];
+            $size = $file["size"];
+            $temp = $file["tmp_name"];
+            $error = $file["error"];
+            $sql = "INSERT INTO Images VALUES(NULL,'$last_id' ,'$name')";
+                if ($error > 0) {
+                    die("Upload an image please!");
+                }else{
+                    if($size > 10000000000){
+                        die("Format is not allowed or file size is too big!");
+                    }else{
+                        if (mysqli_query($db, $sql)){
+                            move_uploaded_file($temp,"uploads/".$name);
+                        }else{
+                            die('Unable to insert data:' .mysqli_error());
+                        }
+                    }
+                }
+        }
+    }
+    function deleteFiles($file_array,$db){
+        
+        
+            $name = $file_array['name'];
+            $FileID = $file_array['id'];
+            if(strpos($FileID,',')){
+            $sql = "DELETE FROM `Images` WHERE `IDImagem`  IN (".$FileID.")";
+            }else{
+                $sql = "DELETE FROM `Images` WHERE IDImagem=".$FileID." ";
+            }
+            
+                if (mysqli_query($db, $sql)){
+                    $deleteFiles = explode(";",$name);
+                    $numFilesDelete = count($deleteFiles);
+                    for ($i=0; $i < $numFilesDelete; $i++) { 
+                        unlink("uploads/".$name);
+                    }
+                }else{
+                     die('Unable to insert data:' .mysqli_error());
+               }
+                    
+    }
+        
+    
  
     include(HEADER_TEMPLATE_TEST);
 ?>
 <!--css e datatables -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet"> 
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"> 
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
     <div class="container">
-      <h3 style="text-align: center;padding: 5px; font-size: x-large;">Lista de Imoveis</h1>
+      
             <div class="col-xl d-flex justify-content-center">
-                <a href="#" class="btn btn-primary li-modal1">Novo Imovél</a>
+                <a href="#" class="btn btn-primary li-modal1">Novo Imóvel</a>
             </div>
+            
             <!-- Tabela de imoveis -->
+            <table id="tblImoveis" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                    <th class="all text-center" style="background-color:  #405163;color: white;" colspan="6">Lista de Imóveis Anunciados</th>
+                   </tr>
+                    <tr>
+                    <th class="all">Cod</th>
+                    <th class="all">Negócio</th>
+                    <th class="all">Imóvel</th>
+                    <th class="none">Bairro</th>
+                    <th class="none">Preço</th>
+                    <th class="all">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                        include("connection.php");
+
+                        $sql = "SELECT ImovelID, TipoImovel,ImovelValor,ImovelNegociacao, ImovelArea,ImovelQuartos, ImovelBanheiros, Bairro.BairroNome as 'Bairro' 
+                        FROM `Imoveis` 
+                        inner join Bairro on Imoveis.ImovelBairro = Bairro.BairroID 
+                        inner join TipoImovel on Imoveis.ImovelTipo = TipoImovel.TipoImovelID";
+                        $result=mysqli_query($db, $sql); //rs.open sql,con
+
+                        while ($row=mysqli_fetch_array($result))
+                        { ?>
+                    <!--open of while -->
+                        <tr>
+                            <td>
+                            <?php echo $row['ImovelID']; ?>
+                            </td>
+                            <td>
+                            <?php echo $row['ImovelNegociacao']; ?>
+                            </td>
+                            <td>
+                            <?php echo $row['TipoImovel']; ?>
+                            </td>
+                            <td>
+                            <?php echo $row['Bairro']; ?>
+                            </td>
+                            <td>
+                            <?php echo 'R$' . number_format( $row['ImovelValor'], 2, ',', '.'); ?>
+                            </td>
+                            <td>
+                            <a href="<?php echo BASEURL; ?>view_data.php?vID=<?php echo $row['ImovelID']; ?>" class="btn btn-default btn-sm li-modal"
+                                data-toggle="tooltip" title="Detalhes"><i class="fa fa-search"></i></a>
+                            <a href="edit_data.php?uID=<?php echo $row['ImovelID']; ?>" class="btn btn-default btn-sm li-modal" data-toggle="tooltip"
+                                title="Editar"><i class="fa fa-pen"></i></a>
+                            <a href="#" onclick="confirmDelete('<?php echo $row['ImovelID'];?>', 'true')" class="btn btn-default btn-sm"
+                                data-toggle="tooltip" title="Apagar"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                <?php } ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                    <th class="all">Cod</th>
+                    <th class="all">Negócio</th>
+                    <th class="all">Imóvel</th>
+                    <th class="none">Bairro</th>
+                    <th class="none">Preço</th>
+                    <th class="all">Ações</th>
+                    </tr>
+                </tfoot>
+            </table>
             <!-- Modal -->
 </div>
         <div id="ex1" class="modal fade text-center">
@@ -125,7 +232,7 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
                     <div class="modal-content">
                     <form enctype="multipart/form-data" action="data.php" method="post">
                             <div class="form-group">
-                                <h2>Cadastro imovel</h2>
+                                <h2>Cadastro Imóvel</h2>
                                 <hr>
                                     <label for="exampleFormControlSelect1">Tipo de Negóciação</label>
                                     <select class="form-control" id="ddrNegociacao" name="ddrNegociacao">
@@ -174,7 +281,8 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Quartos</label>
                                     <select class="form-control" id="ddrQuartos" name="ddrQuartos">
-                                        <option value="1">1</option>
+                                        <option value="0">0</option>    
+                                        <option value="1">1</option>                                        <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -184,6 +292,7 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect2">Banheiros</label>
                                     <select class="form-control" id="ddrBanheiros" name="ddrBanheiros">
+                                        <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -226,10 +335,10 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
                                 <hr>
                                 <div class="form-group">
                                     <input type="checkbox" name="chkDestaque" id="chkDestaque">
-                                    <label for="exampleFormControlTextarea1">Colocar o imovel em destaque</label>
+                                    <label for="exampleFormControlTextarea1">Colocar o Imóvel em destaque</label>
                                 </div>
                                 <hr>
-                                <div class="form-group" style="text-align: center;">
+                                <div class=" d-flex justify-content-center" >
                                     <input type="submit" name="post" value="Salvar" class="btn btn-primary">
                                 </div>
                             </form>
@@ -242,12 +351,12 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
     </div>           
                             
         
-            <!-- <div id="modalPages" class="modal fade text-center">
+  <div id="theModal" class="modal fade ">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     </div>
                 </div>
-            </div> -->
+            </div> 
                             
        
 
@@ -255,6 +364,7 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
    
     <!-- page script -->
     <script>
+     
         $(document).ready(function(){
             $('#txtPreco').mask('#.##0,00', {reverse: true});
             $('#txtCondominio').mask('#.##0,00', {reverse: true});
@@ -268,7 +378,7 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
         function reloadClick(){
             $('.li-modal').on('click', function(e){
                     e.preventDefault();
-                    $('#modalPages').modal('show').find('.modal-content').load($(this).attr('href'));
+                    $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
                     // setTimeout(testf, 1000);
                 });
         }
@@ -284,16 +394,16 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
                 "autoWidth": false,
                 "responsive": true,
                 "language": {
-                    "sEmptyTable": "Nenhum registro encontrado",
-                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sEmptyTable": "Nenhum imóvel encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ imóveis",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 imóvel",
+                    "sInfoFiltered": "(Filtrados de _MAX_ imóveis)",
                     "sInfoPostFix": "",
                     "sInfoThousands": ".",
                     "sLengthMenu": "_MENU_ resultados por página",
                     "sLoadingRecords": "Carregando...",
                     "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sZeroRecords": "Nenhum imóvel encontrado",
                     "sSearch": "Pesquisar",
                     "oPaginate": {
                         "sNext": "Próximo",
@@ -327,7 +437,7 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
         });
         function confirmDelete(delItem, reload_on_return){
             var url = window.location.origin+"<?php echo BASEURL; ?>";
-            var result = confirm("Deseja apagar o imovel?");
+            var result = confirm("Deseja Realmente Excluir este Imóvel?\nEsta ação não poderá ser desfeita!");
             if(result){
                 $.ajax({
                     dataType: 'json',
@@ -355,7 +465,24 @@ if (! isset ( $_SESSION ['username'] ) || empty ( $_SESSION ['username'] )) {
         function readURL(input, imgObj) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+                var imgID = $('#'+imgObj).attr('data-imgID');
+                var imgNome = $('#'+imgObj).attr('src').split('/');
+                imgNome = imgNome[imgNome.length-1];
+                if(imgID != ""){
+                    var valImg = $('#txtFotoRemovidaID').val();
+                    var valImgNome = $('#txtFotoRemovidaNome').val();
+                    if(valImg.length > 0){
+                    imgID+=",";
+                    imgNome+=";";
+                    }
+                    
+                    valImg+=imgID;
+                    valImgNome += imgNome;
+                    $('#txtFotoRemovidaID').val(valImg);
+                    $('#txtFotoRemovidaNome').val(valImgNome);
 
+                }
+                
                 reader.onload = function (e) {
                     $('#'+imgObj)
                         .attr('src', e.target.result);
